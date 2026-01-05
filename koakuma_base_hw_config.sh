@@ -10,8 +10,7 @@ koakuma
 EOF
 
 echo "Copying network interface configuration..."
-cp -v config/20-enp3s0f0.network /etc/systemd/network/
-cp -v config/20-enp3s0f1.network /etc/systemd/network/
+install -vm644 config/hosts/koakuma/networkd/* /etc/systemd/network/
 
 echo "Symlink stub-resolv.conf to resolv.conf..."
 rm -v /etc/resolv.conf
@@ -34,7 +33,7 @@ echo "Installing miscellaneous config drop-ins..."
 mkdir -vp /etc/cmdline.d
 install -vm644 config/common/cmdline.d/* /etc/cmdline.d/
 mkdir -vp /etc/modprobe.d
-install -vm644 config/hosts/koakuma/config/modprobe.d/* /etc/modprobe.d/
+install -vm644 config/hosts/koakuma/modprobe.d/* /etc/modprobe.d/
 
 echo "Modifying mkinitcpio.conf for ZFS..."
 sed -i 's/MODULES=()/MODULES=(zfs)/' /etc/mkinitcpio.conf
