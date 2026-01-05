@@ -31,6 +31,11 @@ pacstrap -KP /mnt base linux-cachyos-bore-lto linux-cachyos-bore-lto-zfs linux-f
 echo "Copy fstab..."
 install -vm644 config/koakuma/fstab /mnt/etc/fstab
 
+echo "Symlink stub-resolv.conf to resolv.conf..."
+rm -v /etc/resolv.conf
+touch /run/systemd/resolve/stub-resolv.conf
+ln -sfv ../run/systemd/resolve/stub-resolv.conf /mnt/etc/resolv.conf
+
 echo "Chroot into OS..."
 arch-chroot /mnt
 cd ~
@@ -59,12 +64,6 @@ EOF
 
 echo "Copying network interface configuration..."
 install -vm644 config/hosts/koakuma/networkd/* /etc/systemd/network/
-
-# this doesn't work in a chroot
-#echo "Symlink stub-resolv.conf to resolv.conf..."
-#rm -v /etc/resolv.conf
-#touch /run/systemd/resolve/stub-resolv.conf
-#ln -sfv /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
 echo "Enable networking services..."
 systemctl enable systemd-networkd
