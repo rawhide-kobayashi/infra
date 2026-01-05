@@ -3,6 +3,7 @@ Type = Path
 Operation = Install
 Operation = Upgrade
 Target = etc/mkinitcpio.d/*.preset
+Target = usr/lib/modules/*/vmlinuz
 
 [Action]
 Description = Overwriting mkinitcpio preset files for UKI...
