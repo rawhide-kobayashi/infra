@@ -26,6 +26,17 @@ zfs mount zroot/roots/default
 zfs mount -a
 
 echo "Bootstrapping OS..."
+sed -i '/[cachyos]/i\
+[cachyos-v3]\
+Include = /etc/pacman.d/cachyos-v3-mirrorlist\
+
+[cachyos-core-v3]\
+Include = /etc/pacman.d/cachyos-v3-mirrorlist\
+
+[cachyos-extra-v3]\
+Include = /etc/pacman.d/cachyos-v3-mirrorlist\
+' /etc/pacman.conf
+
 pacstrap -KP /mnt base linux-cachyos-bore-lto linux-cachyos-bore-lto-zfs linux-firmware zfs-utils vim systemd-resolveconf
 
 echo "Copy fstab..."
