@@ -38,6 +38,10 @@ echo "Modifying mkinitcpio.conf for ZFS..."
 sed -i 's/MODULES=()/MODULES=(zfs)/' /etc/mkinitcpio.conf
 sed -i 's/HOOKS=(base .*/HOOKS=(base udev autodetect microcode modconf kms keyboard keymap sd-vconsole block zfs filesystems)/' /etc/mkinitcpio.conf
 
+echo "Running script to correct mkinitcpio presets and regenerating efi images..."
+/etc/pacman.d/scripts/overwrite-uki
+mkinitcpio -P
+
 echo "Activating zfs-mount-generator..."
 mkdir /etc/zfs/zfs-list.cache
 touch /etc/zfs/zfs-list.cache/zroot

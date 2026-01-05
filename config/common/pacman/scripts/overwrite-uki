@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "Correct auto-generated kernel presets..."
-
 PRESET_DIR="/etc/mkinitcpio.d"
 
 for preset in "$PRESET_DIR"/*.preset; do
