@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+rm -rv /efi2/EFI/Linux/* /efi_bak/*
+cp -Rv /efi/EFI/Linux/* /efi2/EFI/Linux/
+cp -Rv /efi/EFI/Linux/* /efi_bak/'
