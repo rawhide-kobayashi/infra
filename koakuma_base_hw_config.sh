@@ -45,5 +45,5 @@ touch /etc/zfs/zfs-list.cache/zroot
 echo "Enabling ZFS services..."
 systemctl enable zfs-zed
 
-echo "Starting Zed for zfs-mount-generator... Exit script manually."
+echo "Starting Zed for zfs-mount-generator... Exit script manually and remember to reinstall your kernel to trigger an EFI rebuild."
 zed -F
