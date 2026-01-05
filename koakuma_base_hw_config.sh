@@ -8,6 +8,16 @@ koakuma
 
 EOF
 
+echo "Setting timezone and locale..."
+ln -sf /usr/share/zoneinfo/US/Central /etc/localtime
+hwclock --systohc
+sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+locale-gen
+cat << EOF > /etc/locale.conf
+LANG=en_US.UTF-8
+
+EOF
+
 echo "Copying network interface configuration..."
 install -vm644 config/hosts/koakuma/networkd/* /etc/systemd/network/
 
