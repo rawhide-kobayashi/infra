@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Network setup
-
+echo "Setting hostname..."
 echo "Apply hostname..."
 cat << EOF > /etc/hostname
 koakuma
@@ -12,10 +11,11 @@ EOF
 echo "Copying network interface configuration..."
 install -vm644 config/hosts/koakuma/networkd/* /etc/systemd/network/
 
-echo "Symlink stub-resolv.conf to resolv.conf..."
-rm -v /etc/resolv.conf
-touch /run/systemd/resolve/stub-resolv.conf
-ln -sfv /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+# this doesn't work in a chroot
+#echo "Symlink stub-resolv.conf to resolv.conf..."
+#rm -v /etc/resolv.conf
+#touch /run/systemd/resolve/stub-resolv.conf
+#ln -sfv /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
 echo "Enable networking services..."
 systemctl enable systemd-networkd
@@ -46,4 +46,5 @@ touch /etc/zfs/zfs-list.cache/zroot
 echo "Enabling ZFS services..."
 systemctl enable zfs-zed
 
+echo "Starting Zed for zfs-mount-generator... Exit script manually."
 zed -F
