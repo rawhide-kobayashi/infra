@@ -1,0 +1,5 @@
+# /dev/sda1
+UUID=CDD3-7D83          /efi            vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro   0 2
+
+# /dev/sdb1
+UUID=2779-CDC7          /efi2           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro   0 2

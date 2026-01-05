@@ -1,6 +1,45 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+echo "Creating root zpool..."
+zpool create -f -o ashift=12 -o autotrim=on -O aclinherit=passthrough -O aclmode=passthrough -O acltype=nfsv4 \
+-O canmount=off -O compression=zstd -O devices=off -O direct=disabled -O dnodesize=auto -O mountpoint=none \
+-O normalization=formD -R /mnt zroot mirror \
+/dev/disk/by-id/ata-LITEON_CV3-CE512-11_SATA_512GB_TW001D79LOH006BS00ZF-part2 \
+/dev/disk/by-id/ata-LITEON_CV3-CE512-11_SATA_512GB_TW001D79LOH006BS00ZZ-part2
+
+
+zfs create -o mountpoint=none zroot/data
+zfs create -o mountpoint=none zroot/roots
+zfs create -o mountpoint=/ -o canmount=noauto zroot/roots/default
+zfs create -o mountpoint=none zroot/common
+zfs create -o mountpoint=/var -o canmount=off zroot/var
+zfs create zroot/var/log
+zfs create zroot/var/lib
+zfs create -o recordsize=1M -o mountpoint=/var/cache/pacman/pkg zroot/var/pkgcache
+
+
+echo "Export/import and mount zroot datasets..."
+zpool export zroot
+zpool import -d /dev/disk/by-id -R /mnt zroot -N
+zfs mount zroot/roots/default
+zfs mount -a
+
+echo "Bootstrapping OS..."
+pacstrap -KP /mnt base linux-cachyos-bore-lto linux-cachyos-bore-lto-zfs linux-firmware zfs-utils vim systemd-resolveconf
+
+echo "Copy fstab..."
+install -vm644 config/koakuma/fstab /mnt/etc/fstab
+
+echo "Chroot into OS..."
+arch-chroot /mnt
+cd ~
+
+echo "Mount EFI..."
+mkdir /efi
+mkdir /efi2
+mount -a
+
 echo "Setting hostname..."
 echo "Apply hostname..."
 cat << EOF > /etc/hostname
