@@ -26,7 +26,6 @@ mkdir -vp /etc/pacman.d/hooks
 install -vm644 config/common/pacman/hooks/* /etc/pacman.d/hooks/
 mkdir -vp /etc/pacman.d/scripts
 install -vm644 config/common/pacman/scripts/* /etc/pacman.d/scripts/
-chmod -Rv +x /etc/pacman.d/scripts/*
 
 echo "Installing miscellaneous config drop-ins..."
 
