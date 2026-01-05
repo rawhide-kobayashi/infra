@@ -1,0 +1,10 @@
+[Trigger]
+Type = Path
+Operation = Install
+Operation = Upgrade
+Target = etc/mkinitcpio.d/*.preset
+
+[Action]
+Description = Overwriting mkinitcpio preset files for UKI...
+When = PostTransaction
+Exec = /etc/pacman.d/scripts/overwrite-uki

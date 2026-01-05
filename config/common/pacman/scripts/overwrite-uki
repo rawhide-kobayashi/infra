@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PRESET_DIR="/etc/mkinitcpio.d"
+
+for preset in "$PRESET_DIR"/*.preset; do
+    [[ -e "$preset" ]] || continue
+
+    filename="$(basename "$preset")"
+    kernel_name="${filename%.preset}"
+
+    cat << EOF > "$preset" 
+# mkinitcpio preset file for the '$kernel_name' package
+
+#ALL_config="/etc/mkinitcpio.conf"
+ALL_kver="/boot/vmlinuz-$kernel_name"
+
+PRESETS=('default' 'fallback')
+
+default_uki="/efi/EFI/Linux/arch-$kernel_name.efi"
+default_options="--splash /usr/share/systemd/bootctl/splash-arch.bmp"
+
+fallback_uki="/efi/EFI/Linux/arch-$kernel_name-fallback.efi"
+fallback_options="-S autodetect"
+
+EOF
+done
