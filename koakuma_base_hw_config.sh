@@ -37,7 +37,7 @@ Include = /etc/pacman.d/cachyos-v3-mirrorlist\
 Include = /etc/pacman.d/cachyos-v3-mirrorlist\
 ' /etc/pacman.conf
 
-pacstrap -KP /mnt base linux-cachyos-bore-lto linux-cachyos-bore-lto-zfs linux-firmware zfs-utils vim systemd-resolveconf
+pacstrap -KP /mnt base linux-cachyos-bore-lto linux-cachyos-bore-lto-zfs linux-firmware zfs-utils vim systemd-resolvconf
 
 echo "Copy fstab..."
 install -vm644 config/koakuma/fstab /mnt/etc/fstab
