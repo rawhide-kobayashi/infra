@@ -37,10 +37,8 @@ Include = /etc/pacman.d/cachyos-v3-mirrorlist\
 Include = /etc/pacman.d/cachyos-v3-mirrorlist\
 ' /etc/pacman.conf
 
-pacstrap -KP /mnt base linux-firmware-intel vim systemd-resolvconf openssh mkinitcpio cachyos-keyring
-
-echo "Copy additional cachyos mirrorlists..."
-cp -Rv /etc/pacman.d/cachyos-* /mnt/etc/pacman.d/
+pacstrap -KP /mnt base linux-firmware-intel vim systemd-resolvconf openssh mkinitcpio cachyos-keyring \
+cachyos-mirrorlist cachyos-rate-mirrors
 
 echo "Import cachyos keys and init keyring..."
 pacman-key --recv-keys F3B607488DB35A47 --keyserver keyserver.ubuntu.com
@@ -85,6 +83,7 @@ echo "Enable networking services..."
 arch-chroot /mnt systemctl enable systemd-networkd.service
 arch-chroot /mnt systemctl enable systemd-resolved.service
 arch-chroot /mnt systemctl enable sshd.service
+arch-chroot /mnt systemctl enable cachyos-rate-mirrors.timer
 
 echo "Installing pacman hooks/scripts..."
 mkdir -vp /mnt/etc/pacman.d/hooks
@@ -114,5 +113,5 @@ echo "Enabling ZFS services..."
 arch-chroot /mnt systemctl enable zfs.target
 arch-chroot /mnt systemctl enable zfs-zed.service
 
-echo "Starting Zed for zfs-mount-generator... Exit script manually."
+echo "Starting Zed to bootstrap zfs-mount-generator... Exit script manually."
 arch-chroot /mnt zed -F
