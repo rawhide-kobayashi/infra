@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-rm -rfv /efi2/EFI/
+rm -rfv /efi2/EFI/*
 cp -Rv /efi/EFI/* /efi2/EFI/

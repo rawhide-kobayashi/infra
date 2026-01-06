@@ -18,7 +18,6 @@ zfs create zroot/var/log
 zfs create zroot/var/lib
 zfs create -o recordsize=1M -o mountpoint=/var/cache/pacman/pkg zroot/var/pkgcache
 
-
 echo "Export/import and mount zroot datasets..."
 zpool export zroot
 zpool import -d /dev/disk/by-id -R /mnt zroot -N
@@ -57,8 +56,13 @@ echo "Mount EFI..."
 mkdir /mnt/efi
 mkdir /mnt/efi2
 arch-chroot /mnt mount -a
-rm -rfv /mnt/efi/EFI/Linux/*
-rm -rfv /mnt/efi2/EFI/Linux/*
+rm -rfv /mnt/efi/EFI/*
+mkdir -pv /mnt/efi/EFI/Linux
+mkdir -pv /mnt/efi/EFI/Linux_bak
+mkdir -pv /mnt/efi/EFI/Linux_checkpoint
+
+echo "Install refind..."
+refind-install --usedefault /dev/sda1
 
 echo "Apply hostname..."
 cat << EOF > /mnt/etc/hostname
