@@ -37,7 +37,7 @@ Include = /etc/pacman.d/cachyos-v3-mirrorlist\
 Include = /etc/pacman.d/cachyos-v3-mirrorlist\
 ' /etc/pacman.conf
 
-pacstrap -KP /mnt base linux-firmware-intel vim systemd-resolvconf openssh mkinitcpio
+pacstrap -KP /mnt base linux-firmware-intel vim systemd-resolvconf openssh mkinitcpio cachyos-keyring
 
 echo "Copy additional cachyos mirrorlists..."
 cp -Rv /etc/pacman.d/cachyos-* /mnt/etc/pacman.d/
