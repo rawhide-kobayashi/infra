@@ -44,7 +44,6 @@ install -vm644 config/hosts/koakuma/fstab /mnt/etc/fstab
 
 echo "Symlink stub-resolv.conf to resolv.conf..."
 rm -v /mnt/etc/resolv.conf
-touch /mnt/run/systemd/resolve/stub-resolv.conf
 ln -sfv ../run/systemd/resolve/stub-resolv.conf /mnt/etc/resolv.conf
 
 echo "Mount EFI..."
