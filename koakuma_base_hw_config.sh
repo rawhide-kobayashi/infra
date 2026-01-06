@@ -38,7 +38,7 @@ Include = /etc/pacman.d/cachyos-v3-mirrorlist\
 ' /etc/pacman.conf
 
 pacstrap -KP /mnt base linux-firmware-intel vim systemd-resolvconf openssh mkinitcpio cachyos-keyring \
-cachyos-mirrorlist cachyos-v3-mirrorlist cachyos-rate-mirrors
+cachyos-mirrorlist cachyos-v3-mirrorlist cachyos-rate-mirrors sbctl
 
 echo "Import cachyos keys and init keyring..."
 pacman-key --recv-keys F3B607488DB35A47 --keyserver keyserver.ubuntu.com
@@ -101,6 +101,10 @@ install -vm644 config/hosts/koakuma/modprobe.d/* /mnt/etc/modprobe.d/
 echo "Modifying mkinitcpio.conf for ZFS..."
 sed -i 's/MODULES=()/MODULES=(zfs)/' /mnt/etc/mkinitcpio.conf
 sed -i 's/HOOKS=(base .*/HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block zfs filesystems)/' /mnt/etc/mkinitcpio.conf
+
+echo "Creating bespoke secure boot keys and enrolling..."
+arch-chroot /mnt sbctl create-keys
+arch-chroot /mnt sbctl enroll-keys -m
 
 echo "Installing kernel/ZFS..."
 arch-chroot /mnt pacman -Sy --noconfirm linux-cachyos-bore-lto linux-cachyos-bore-lto-zfs zfs-utils

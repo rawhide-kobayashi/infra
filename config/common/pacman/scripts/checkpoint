@@ -23,7 +23,6 @@ for preset in /tmp/*.preset; do
 done
 
 cp -Rv /efi/EFI/Linux/* /efi/EFI/Linux_bak/
-cp -Rv /efi2/EFI/Linux/* /efi2/EFI/Linux_bak/
 
 rm -rfv /tmp/*.preset
 rm -v /tmp/cmdline
