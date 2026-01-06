@@ -43,73 +43,68 @@ echo "Copy fstab..."
 install -vm644 config/hosts/koakuma/fstab /mnt/etc/fstab
 
 echo "Symlink stub-resolv.conf to resolv.conf..."
-rm -v /etc/resolv.conf
-touch /run/systemd/resolve/stub-resolv.conf
+rm -v /mnt/etc/resolv.conf
+touch /mnt/run/systemd/resolve/stub-resolv.conf
 ln -sfv ../run/systemd/resolve/stub-resolv.conf /mnt/etc/resolv.conf
 
-echo "Chroot into OS..."
-arch-chroot /mnt
-cd ~
-
 echo "Mount EFI..."
-mkdir /efi
-mkdir /efi2
-mount -a
-rm -rfv /efi/EFI/Linux/*
-rm -rfv /efi2/EFI/Linux/*
+mkdir /mnt/efi
+mkdir /mnt/efi2
+arch-chroot /mnt mount -a
+rm -rfv /mnt/efi/EFI/Linux/*
+rm -rfv /mnt/efi2/EFI/Linux/*
 
-echo "Setting hostname..."
 echo "Apply hostname..."
-cat << EOF > /etc/hostname
+cat << EOF > /mnt/etc/hostname
 koakuma
 
 EOF
 
 echo "Setting timezone and locale..."
-ln -sf /usr/share/zoneinfo/US/Central /etc/localtime
-hwclock --systohc
-sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
-locale-gen
-cat << EOF > /etc/locale.conf
+arch-chroot /mnt ln -sf /usr/share/zoneinfo/US/Central /etc/localtime
+arch-chroot /mnt hwclock --systohc
+arch-chroot /mnt sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+arch-chroot /mnt locale-gen
+cat << EOF > /mnt/etc/locale.conf
 LANG=en_US.UTF-8
 
 EOF
 
 echo "Copying network interface configuration..."
-install -vm644 config/hosts/koakuma/networkd/* /etc/systemd/network/
+install -vm644 config/hosts/koakuma/networkd/* /mnt/etc/systemd/network/
 
 echo "Enable networking services..."
-systemctl enable systemd-networkd.service
-systemctl enable systemd-resolved.service
-systemctl enable sshd.service
+arch-chroot /mnt systemctl enable systemd-networkd.service
+arch-chroot /mnt systemctl enable systemd-resolved.service
+arch-chroot /mnt systemctl enable sshd.service
 
 echo "Installing pacman hooks/scripts..."
-mkdir -vp /etc/pacman.d/hooks
-install -vm644 config/common/pacman/hooks/* /etc/pacman.d/hooks/
-mkdir -vp /etc/pacman.d/scripts
-install -vm744 config/common/pacman/scripts/* /etc/pacman.d/scripts/
+mkdir -vp /mnt/etc/pacman.d/hooks
+install -vm644 config/common/pacman/hooks/* /mnt/etc/pacman.d/hooks/
+mkdir -vp /mnt/etc/pacman.d/scripts
+install -vm744 config/common/pacman/scripts/* /mnt/etc/pacman.d/scripts/
 
 echo "Installing miscellaneous config drop-ins..."
 
-mkdir -vp /etc/cmdline.d
-install -vm644 config/common/cmdline.d/* /etc/cmdline.d/
-mkdir -vp /etc/modprobe.d
-install -vm644 config/hosts/koakuma/modprobe.d/* /etc/modprobe.d/
+mkdir -vp /mnt/etc/cmdline.d
+install -vm644 config/common/cmdline.d/* /mnt/etc/cmdline.d/
+mkdir -vp /mnt/etc/modprobe.d
+install -vm644 config/hosts/koakuma/modprobe.d/* /mnt/etc/modprobe.d/
 
 echo "Modifying mkinitcpio.conf for ZFS..."
-sed -i 's/MODULES=()/MODULES=(zfs)/' /etc/mkinitcpio.conf
-sed -i 's/HOOKS=(base .*/HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block zfs filesystems)/' /etc/mkinitcpio.conf
+sed -i 's/MODULES=()/MODULES=(zfs)/' /mnt/etc/mkinitcpio.conf
+sed -i 's/HOOKS=(base .*/HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block zfs filesystems)/' /mnt/etc/mkinitcpio.conf
 
 echo "Installing kernel/ZFS..."
-pacman -Sy --noconfirm linux-cachyos-bore-lto linux-cachyos-bore-lto-zfs zfs-utils
+arch-chroot /mnt pacman -Sy --noconfirm linux-cachyos-bore-lto linux-cachyos-bore-lto-zfs zfs-utils
 
 echo "Activating zfs-mount-generator..."
-mkdir /etc/zfs/zfs-list.cache
-touch /etc/zfs/zfs-list.cache/zroot
+mkdir /mnt/etc/zfs/zfs-list.cache
+touch /mnt/etc/zfs/zfs-list.cache/zroot
 
 echo "Enabling ZFS services..."
-systemctl enable zfs.target
-systemctl enable zfs-zed.service
+arch-chroot /mnt systemctl enable zfs.target
+arch-chroot /mnt systemctl enable zfs-zed.service
 
 echo "Starting Zed for zfs-mount-generator... Exit script manually."
-zed -F
+arch-chroot /mnt zed -F
