@@ -42,6 +42,12 @@ pacstrap -KP /mnt base linux-firmware-intel vim systemd-resolvconf openssh mkini
 echo "Copy additional cachyos mirrorlists..."
 cp -Rv /etc/pacman.d/cachyos-* /mnt/etc/pacman.d/
 
+echo "Import cachyos keys and init keyring..."
+pacman-key --recv-keys F3B607488DB35A47 --keyserver keyserver.ubuntu.com
+pacman-key --lsign-key F3B607488DB35A47
+pacman-key --init
+pacman-key --populate
+
 echo "Copy fstab..."
 install -vm644 config/hosts/koakuma/fstab /mnt/etc/fstab
 
