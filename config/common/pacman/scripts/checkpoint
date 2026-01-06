@@ -30,7 +30,7 @@ rm -v /tmp/cmdline
 
 zfs list -t snapshot zroot/roots/default@upgrade_checkpoint || true
 
-if [[ "$?" == "0" ]]; then
+if [[ "$?" == "1" ]]; then
     zfs destroy -Rv zroot/roots/default@upgrade_checkpoint
 fi
 
