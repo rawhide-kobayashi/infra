@@ -28,7 +28,7 @@ cp -Rv /efi2/EFI/Linux/* /efi2/EFI/Linux_bak/
 rm -rfv /tmp/*.preset
 rm -v /tmp/cmdline
 
-zfs list -t snapshot zroot/roots/default@upgrade_checkpoint
+zfs list -t snapshot zroot/roots/default@upgrade_checkpoint || true
 
 if [[ "$?" == "0"]]; then
     zfs destroy -Rv zroot/roots/default@upgrade_checkpoint
