@@ -1,5 +1,5 @@
 [Match]
-Name=enp3s0f0
+MACAddress=e0:d5:5e:a6:bc:4f
 
 [Network]
 Address=192.168.101.80/24
