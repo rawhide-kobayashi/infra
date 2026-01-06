@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CMDLINE="$(cat /proc/cmdline)"
+
+CHECK_STRING="zfs=zroot/roots/default rw"
+REPLACEMENT="zfs=zroot/roots/default_checkpoint rw"
+
+if [[ "$CMDLINE" != *"$CHECK_STRING"* ]]; then
+    echo "Not running under the default OS, doing nothing."
+    exit 0
+fi
+
+NEW_CMDLINE="${CMDLINE//$CHECK_STRING/$REPLACEMENT}"
+
+echo "$NEW_CMDLINE" >> /tmp/cmdline
+cp -Rv /etc/mkinitcpio.d/* /tmp/
+
+for preset in /tmp/*.preset; do
+    sed -i 's|/efi/EFI/Linux|/efi/EFI/Linux_checkpoint|g' $preset
+    sed -i 's|\.efi|-checkpoint.efi|g' $preset
+    mkinitcpio -p $preset
+done
+
+cp -Rv /efi/EFI/Linux/* /efi/EFI/Linux_bak/
+cp -Rv /efi2/EFI/Linux/* /efi2/EFI/Linux_bak/
+
+rm -rfv /tmp/*.preset
+rm -v /tmp/cmdline
+
+zfs list -t snapshot zroot/roots/default@upgrade_checkpoint
+
+if [[ "$?" == "1"]]; then
+    zfs destroy -Rv zroot/roots/default@upgrade_checkpoint
+fi
+
+zfs snapshot zroot/roots/default@upgrade_checkpoint
+zfs clone zroot/roots/default@upgrade_checkpoint zroot/roots/default_checkpoint
