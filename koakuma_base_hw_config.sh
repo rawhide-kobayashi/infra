@@ -38,7 +38,7 @@ Include = /etc/pacman.d/cachyos-v3-mirrorlist\
 ' /etc/pacman.conf
 
 pacstrap -KP /mnt base linux-firmware-intel vim systemd-resolvconf openssh mkinitcpio cachyos-keyring \
-cachyos-mirrorlist cachyos-rate-mirrors
+cachyos-mirrorlist cachyos-v3-mirrorlist cachyos-rate-mirrors
 
 echo "Import cachyos keys and init keyring..."
 pacman-key --recv-keys F3B607488DB35A47 --keyserver keyserver.ubuntu.com
