@@ -37,10 +37,10 @@ Include = /etc/pacman.d/cachyos-v3-mirrorlist\
 Include = /etc/pacman.d/cachyos-v3-mirrorlist\
 ' /etc/pacman.conf
 
-pacstrap -KP /mnt base linux-cachyos-bore-lto linux-cachyos-bore-lto-zfs linux-firmware zfs-utils vim systemd-resolvconf
+pacstrap -KP /mnt base linux-firmware-intel vim systemd-resolvconf openssh
 
 echo "Copy fstab..."
-install -vm644 config/koakuma/fstab /mnt/etc/fstab
+install -vm644 config/hosts/koakuma/fstab /mnt/etc/fstab
 
 echo "Symlink stub-resolv.conf to resolv.conf..."
 rm -v /etc/resolv.conf
@@ -55,6 +55,8 @@ echo "Mount EFI..."
 mkdir /efi
 mkdir /efi2
 mount -a
+rm -rfv /efi/EFI/Linux/*
+rm -rfv /efi2/EFI/Linux/*
 
 echo "Setting hostname..."
 echo "Apply hostname..."
@@ -77,8 +79,9 @@ echo "Copying network interface configuration..."
 install -vm644 config/hosts/koakuma/networkd/* /etc/systemd/network/
 
 echo "Enable networking services..."
-systemctl enable systemd-networkd
-systemctl enable systemd-resolved
+systemctl enable systemd-networkd.service
+systemctl enable systemd-resolved.service
+systemctl enable sshd.service
 
 echo "Installing pacman hooks/scripts..."
 mkdir -vp /etc/pacman.d/hooks
@@ -97,16 +100,16 @@ echo "Modifying mkinitcpio.conf for ZFS..."
 sed -i 's/MODULES=()/MODULES=(zfs)/' /etc/mkinitcpio.conf
 sed -i 's/HOOKS=(base .*/HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block zfs filesystems)/' /etc/mkinitcpio.conf
 
-echo "Running script to correct mkinitcpio presets and regenerating efi images..."
-/etc/pacman.d/scripts/overwrite-uki
-mkinitcpio -P
+echo "Installing kernel/ZFS..."
+pacman -Sy --noconfirm linux-cachyos-bore-lto linux-cachyos-bore-lto-zfs zfs-utils
 
 echo "Activating zfs-mount-generator..."
 mkdir /etc/zfs/zfs-list.cache
 touch /etc/zfs/zfs-list.cache/zroot
 
 echo "Enabling ZFS services..."
-systemctl enable zfs-zed
+systemctl enable zfs.target
+systemctl enable zfs-zed.service
 
-echo "Starting Zed for zfs-mount-generator... Exit script manually and remember to reinstall your kernel to trigger an EFI rebuild."
+echo "Starting Zed for zfs-mount-generator... Exit script manually."
 zed -F
