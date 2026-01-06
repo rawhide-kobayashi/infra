@@ -37,7 +37,7 @@ Include = /etc/pacman.d/cachyos-v3-mirrorlist\
 Include = /etc/pacman.d/cachyos-v3-mirrorlist\
 ' /etc/pacman.conf
 
-pacstrap -KP /mnt base linux-firmware-intel vim systemd-resolvconf openssh
+pacstrap -KP /mnt base linux-firmware-intel vim systemd-resolvconf openssh mkinitcpio
 
 echo "Copy fstab..."
 install -vm644 config/hosts/koakuma/fstab /mnt/etc/fstab
