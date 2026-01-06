@@ -39,6 +39,9 @@ Include = /etc/pacman.d/cachyos-v3-mirrorlist\
 
 pacstrap -KP /mnt base linux-firmware-intel vim systemd-resolvconf openssh mkinitcpio
 
+echo "Copy additional cachyos mirrorlists..."
+cp -Rv /etc/pacman.d/cachyos-* /mnt/etc/pacman.d/
+
 echo "Copy fstab..."
 install -vm644 config/hosts/koakuma/fstab /mnt/etc/fstab
 
