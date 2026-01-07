@@ -25,6 +25,8 @@ zfs mount zroot/roots/default
 zfs mount -a
 
 echo "Bootstrapping OS..."
+sed -i '/#NoExtract/i\
+NoExtract = /usr/share/libalpm/hooks/zz-sbctl.hook' /etc/pacman.conf
 sed -i '/\[cachyos\]/i\
 [cachyos-v3]\
 Include = /etc/pacman.d/cachyos-v3-mirrorlist\
