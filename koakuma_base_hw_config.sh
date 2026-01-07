@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# because some this messes with the chroot?
+systemctl stop zfs-zed.service
+
 echo "Creating root zpool..."
 zpool create -f -o ashift=12 -o autotrim=on -O aclinherit=passthrough -O aclmode=passthrough -O acltype=nfsv4 \
 -O canmount=off -O compression=zstd -O devices=off -O direct=disabled -O dnodesize=auto -O mountpoint=none \
@@ -127,7 +130,7 @@ echo "Starting Zed to bootstrap zfs-mount-generator... Wait a few seconds."
 
 cat << EOF > /mnt/root/zed.sh
 zed -F &
-pid=$!
+pid=pgrep zed
 sleep 5
 kill -INT $pid
 sed -Ei "s|/mnt/?|/|" /etc/zfs/zfs-list.cache/*
