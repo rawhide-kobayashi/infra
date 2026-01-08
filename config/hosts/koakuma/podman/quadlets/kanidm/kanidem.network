@@ -1,0 +1,4 @@
+[Network]
+Driver=macvlan
+InterfaceName=br0
+IPAMDriver=dhcp

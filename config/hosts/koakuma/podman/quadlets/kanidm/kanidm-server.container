@@ -1,0 +1,9 @@
+[Container]
+Image=docker.io/kanidm/server:1.8.5
+HostName=idm.koakuma
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
