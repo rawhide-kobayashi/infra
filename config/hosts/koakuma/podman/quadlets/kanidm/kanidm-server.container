@@ -1,6 +1,7 @@
 [Container]
 Image=docker.io/kanidm/server:1.8.5
 HostName=idm.koakuma
+Mount=bind,src=/var/lib/containers/storage/volumes/kanidm,dst=/data
 
 [Service]
 Restart=always
