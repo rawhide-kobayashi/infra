@@ -10,3 +10,6 @@ systemctl daemon-reload
 
 echo "Copying letsencrypt hooks..."
 install -vm744 config/hosts/koakuma/letsencrypt/hooks/deploy/* /etc/letsencrypt/renewal-hooks/deploy/
+
+echo "Copying kanidm config..."
+install -vm644 config/hosts/koakuma/podman/config/kanidm/server.toml /var/lib/containers/storage/volumes/kanidm/
