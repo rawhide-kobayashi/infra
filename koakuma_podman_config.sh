@@ -9,4 +9,4 @@ echo "Reloading systemctl daemon..."
 systemctl daemon-reload
 
 echo "Copying letsencrypt hooks..."
-install -vm644 config/hosts/koakuma/letsencrypt/hooks/deploy/* /etc/letsencrypt/renewal-hooks/deploy/
+install -vm744 config/hosts/koakuma/letsencrypt/hooks/deploy/* /etc/letsencrypt/renewal-hooks/deploy/
