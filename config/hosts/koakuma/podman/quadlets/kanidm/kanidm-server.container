@@ -5,7 +5,7 @@ Description=Kanidm server container
 Image=docker.io/kanidm/server:1.8.5
 HostName=idm.koakuma
 Mount=bind,src=/var/lib/containers/storage/volumes/kanidm,dst=/data
-Pod=kanidm
+Pod=kanidm.pod
 AddCapability=NET_BIND_SERVICE
 
 [Service]
