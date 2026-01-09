@@ -1,4 +1,4 @@
 [Pod]
 PodName=kanidm
-HostName=kanidm.koakuma.gensoukyou.neet.works
+HostName=kanidm.koakuma
 Network=kanidm_macvlan.network
