@@ -7,3 +7,6 @@ cp -rv config/hosts/koakuma/podman/quadlets/* /etc/containers/systemd/
 
 echo "Reloading systemctl daemon..."
 systemctl daemon-reload
+
+echo "Copying letsencrypt hooks..."
+install -vm644 config/hosts/koakuma/letsencrypt/hooks/deploy/* /etc/letsencrypt/renewal-hooks/deploy/
