@@ -2,5 +2,5 @@
 PodName=kanidm
 ServiceName=kanidm
 HostName=kanidm.koakuma
-Network=kanidm_macvlan.network
+Network=kanidm-macvlan.network
 UserNS=auto
