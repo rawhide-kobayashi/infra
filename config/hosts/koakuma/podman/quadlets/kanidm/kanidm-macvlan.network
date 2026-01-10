@@ -1,4 +1,5 @@
 [Network]
+NetworkName=kanidm-macvlan
 Driver=macvlan
 InterfaceName=br0
 IPAMDriver=dhcp
