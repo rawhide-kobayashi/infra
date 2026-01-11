@@ -5,3 +5,4 @@ HostName=kanidm.koakuma
 Network=kanidm-macvlan.network
 SubGIDMap=kanidm
 SubUIDMap=kanidm
+PodmanArgs=--mac-address ba:e2:83:19:d4:3c
