@@ -3,3 +3,6 @@ Name=br0
 
 [Network]
 MACVLAN=mac0
+
+[Link]
+RequiredForOnline=no
