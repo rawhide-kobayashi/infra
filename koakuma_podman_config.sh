@@ -16,4 +16,4 @@ echo "Copying letsencrypt hooks..."
 install -vm744 config/hosts/koakuma/letsencrypt/hooks/deploy/* /etc/letsencrypt/renewal-hooks/deploy/
 
 echo "Copying kanidm config..."
-install -vm644 -o100000 -g100000 config/hosts/koakuma/podman/config/kanidm/server.toml /var/lib/containers/storage/volumes/kanidm/
+install -vm640 -o100000 -g101000 config/hosts/koakuma/podman/config/kanidm/server.toml /var/lib/containers/storage/volumes/kanidm/
