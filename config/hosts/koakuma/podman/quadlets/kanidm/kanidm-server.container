@@ -4,7 +4,7 @@ Description=Kanidm server container
 [Container]
 Image=docker.io/kanidm/server:1.8.5
 ContainerName=kanidm-server
-Mount=type=bind,src=/var/lib/containers/storage/volumes/kanidm,dst=/data,idmap=true
+Mount=type=bind,src=/var/lib/containers/storage/volumes/kanidm,dst=/data,U=true
 Pod=kanidm.pod
 AddCapability=NET_BIND_SERVICE
 
