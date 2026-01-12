@@ -31,3 +31,7 @@ install -vm644 config/common/kanidm/* /etc/kanidm/
 install -vm644 config/common/pam.d/* /etc/pam.d/
 install -vm644 config/common/nsswitch.conf /etc/nsswitch.conf
 systemctl restart kanidm-unixd.service
+
+echo "Install sudoers configuration..."
+rm -rfv /etc/sudoers.d/*
+install -vm644 config/common/sudoers.d/* /etc/sudoers.d/
