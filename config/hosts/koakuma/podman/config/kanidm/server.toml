@@ -96,8 +96,8 @@ origin = "https://koakuma.idm.neetworks-auth.com"
 # [http_client_address_info]
 # proxy-v2 = ["127.0.0.1", "127.0.0.0/8"]
 #   # OR
-# [http_client_address_info]
-# x-forward-for = ["127.0.0.1", "127.0.0.0/8"]
+[http_client_address_info]
+x-forward-for = ["10.20.30.1", "10.10.10.37"]
 #   # OR
 # [http_client_address_info]
 # # AVOID IF POSSIBLE!!!

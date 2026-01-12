@@ -90,7 +90,7 @@ default_shell = "/usr/bin/bash"
 #
 # Default: spn
 
-# home_alias = "spn"
+home_alias = "name"
 
 
 # Controls if home directories should be prepopulated with the contents of `/etc/skel`
@@ -106,7 +106,7 @@ default_shell = "/usr/bin/bash"
 # Default: spn
 # NOTE: Users from a trust will always use spn.
 
-# uid_attr_map = "spn"
+uid_attr_map = "name"
 
 
 # Chooses which attribute is used for domain local groups in presentation of the gid value.
@@ -114,7 +114,7 @@ default_shell = "/usr/bin/bash"
 # Default: spn
 # NOTE: Groups from a trust will always use spn.
 
-# gid_attr_map = "spn"
+gid_attr_map = "name"
 
 
 # `selinux` controls whether the `kanidm_unixd_tasks` daemon should detect and enable SELinux runtime
@@ -169,3 +169,6 @@ pam_allowed_login_groups = ["posix_group"]
 # local = "admins"
 # with = "system-admins"
 
+[[kanidm.map_group]]
+local = "wheel"
+with = "superusers
