@@ -34,4 +34,4 @@ systemctl restart kanidm-unixd.service
 
 echo "Install sudoers configuration..."
 rm -rfv /etc/sudoers.d/*
-install -vm644 config/common/sudoers.d/* /etc/sudoers.d/
+install -vm440 config/common/sudoers.d/* /etc/sudoers.d/
