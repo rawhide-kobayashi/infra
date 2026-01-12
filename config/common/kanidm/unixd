@@ -80,7 +80,7 @@ default_shell = "/usr/bin/bash"
 #
 # Default: unset
 #
-# home_mount_prefix = "/u/"
+home_mount_prefix = "/u/"
 #
 
 # The default token attribute used for generating symlinks pointing to the user's home
@@ -152,7 +152,7 @@ gid_attr_map = "name"
 #
 # Default: empty set (no access allowed)
 
-pam_allowed_login_groups = ["posix_group"]
+pam_allowed_login_groups = ["idm_unix_admins"]
 
 # Allow extension (mapping) of a local system groups members with members from a
 # kanidm provided group. An example of this is that the local group
@@ -171,4 +171,4 @@ pam_allowed_login_groups = ["posix_group"]
 
 [[kanidm.map_group]]
 local = "wheel"
-with = "superusers
+with = "superusers"
