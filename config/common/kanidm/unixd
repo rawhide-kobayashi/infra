@@ -152,7 +152,7 @@ gid_attr_map = "name"
 #
 # Default: empty set (no access allowed)
 
-pam_allowed_login_groups = ["idm_unix_admins@idm.neetworks-auth.com"]
+pam_allowed_login_groups = ["idm_unix_admins"]
 
 # Allow extension (mapping) of a local system groups members with members from a
 # kanidm provided group. An example of this is that the local group
