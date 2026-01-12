@@ -29,4 +29,5 @@ echo "Copy kanidm configuration & restart daemons..."
 rm -rfv /etc/kanidm/*
 install -vm644 config/common/kanidm/* /etc/kanidm/
 install -vm644 config/common/pam.d/* /etc/pam.d/
+install -vm644 config/common/nsswitch.conf /etc/nsswitch.conf
 systemctl restart kanidm-unixd.service
