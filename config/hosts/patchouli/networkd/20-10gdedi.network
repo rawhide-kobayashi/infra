@@ -1,0 +1,9 @@
+[Match]
+MACAddress=ac:1f:6b:73:65:22
+
+[Network]
+Address=192.168.101.168/24
+ConfigureWithoutCarrier=true
+
+[Link]
+MTUBytes=9702

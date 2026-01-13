@@ -1,0 +1,8 @@
+[Pod]
+PodName=kanidm
+ServiceName=kanidm
+HostName=kanidm.koakuma
+Network=kanidm-macvlan.network
+SubGIDMap=kanidm
+SubUIDMap=kanidm
+PodmanArgs=--mac-address bb:df:20:01:a7:d4

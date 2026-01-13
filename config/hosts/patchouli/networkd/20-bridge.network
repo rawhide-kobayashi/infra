@@ -1,0 +1,5 @@
+[Match]
+MACAddress=e4:1d:2d:01:1f:c0
+
+[Network]
+Bridge=br0
