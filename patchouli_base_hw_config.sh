@@ -128,17 +128,10 @@ touch /mnt/etc/zfs/zfs-list.cache/zroot
 
 echo "Starting Zed to bootstrap zfs-mount-generator... Wait a few seconds."
 
-cat << EOF > /mnt/root/zed.sh
-zed -F &
+arch-chroot zed -F &
 pid=pgrep zed
 sleep 5
 kill -INT $pid
-sed -Ei "s|/mnt/?|/|" /etc/zfs/zfs-list.cache/*
-
-EOF
-
-chmod +x /mnt/root/zed.sh
-arch-chroot /mnt /root/zed.sh
-rm /mnt/root/zed.sh
+sed -Ei "s|/mnt/?|/|" /mnt/etc/zfs/zfs-list.cache/*
 
 echo "Job's done."
