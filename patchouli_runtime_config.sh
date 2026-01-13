@@ -2,7 +2,7 @@
 set -euo pipefail
 
 echo "Copy fstab..."
-install -vm644 config/hosts/patchouli/fstab /mnt/etc/fstab
+install -vm644 config/hosts/patchouli/fstab /etc/fstab
 mount -a
 
 echo "Copying network interface configuration..."
