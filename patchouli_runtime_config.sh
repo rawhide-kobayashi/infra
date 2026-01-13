@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+echo "Copy fstab..."
+install -vm644 config/hosts/patchouli/fstab /mnt/etc/fstab
+mount -a
+
 echo "Copying network interface configuration..."
 rm -rfv /etc/systemd/network/*
 install -vm644 config/hosts/patchouli/networkd/* /etc/systemd/network/
