@@ -37,5 +37,5 @@ rm -rfv /etc/sudoers.d/*
 install -vm440 config/common/sudoers.d/* /etc/sudoers.d/
 
 echo "Install samba configuration..."
-install -vm644 config/hosts/koakuma/samba/smb.conf /etc/samba/smb.conf
+install -vm644 config/hosts/patchouli/samba/smb.conf /etc/samba/smb.conf
 systemctl restart smb
