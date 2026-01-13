@@ -31,18 +31,18 @@ echo "Bootstrapping OS..."
 sed -i '/#NoExtract/i\
 NoExtract = /usr/share/libalpm/hooks/zz-sbctl.hook' /etc/pacman.conf
 sed -i '/\[cachyos\]/i\
-[cachyos-v3]\
-Include = /etc/pacman.d/cachyos-v3-mirrorlist\
+[cachyos-v4]\
+Include = /etc/pacman.d/cachyos-v4-mirrorlist\
 \
-[cachyos-core-v3]\
-Include = /etc/pacman.d/cachyos-v3-mirrorlist\
+[cachyos-core-v4]\
+Include = /etc/pacman.d/cachyos-v4-mirrorlist\
 \
-[cachyos-extra-v3]\
-Include = /etc/pacman.d/cachyos-v3-mirrorlist\
+[cachyos-extra-v4]\
+Include = /etc/pacman.d/cachyos-v4-mirrorlist\
 ' /etc/pacman.conf
 
 pacstrap -P /mnt base linux-firmware-intel vim systemd-resolvconf openssh mkinitcpio cachyos-keyring \
-cachyos-mirrorlist cachyos-v3-mirrorlist cachyos-rate-mirrors sbctl intel-ucode
+cachyos-mirrorlist cachyos-v4-mirrorlist cachyos-rate-mirrors sbctl intel-ucode
 
 echo "Import cachyos keys and init keyring..."
 pacman-key --recv-keys F3B607488DB35A47 --keyserver keyserver.ubuntu.com
@@ -128,7 +128,7 @@ touch /mnt/etc/zfs/zfs-list.cache/zroot
 
 echo "Starting Zed to bootstrap zfs-mount-generator... Wait a few seconds."
 
-arch-chroot zed -F &
+arch-chroot /mnt zed -F &
 pid=pgrep zed
 sleep 5
 kill -INT $pid
