@@ -2,7 +2,7 @@
   type: "pull"
   connect:
     type: "http"
-    server: "https://patchouli.gensoukyou.neet.works:13493"
+    server: "https://10gdedi.patchouli.gensoukyou.neet.works:13493"
     listener_name: "media to koakuma"
     client_identity: "koakuma.gensoukyou.neet.works"
   cron: "0 * * * *"

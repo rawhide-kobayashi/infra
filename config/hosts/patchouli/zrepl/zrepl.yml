@@ -1,7 +1,7 @@
 include_keys: "keys.d/*.yml"
 
 listen:
-  - addr: "patchouli.gensoukyou.neet.works:13493"
+  - addr: ":13493"
     tls_cert: "/etc/letsencrypt/live/patchouli.gensoukyou.neet.works/fullchain.pem"
     tls_key: "/etc/letsencrypt/live/patchouli.gensoukyou.neet.works/privkey.pem"
     zfs: true
