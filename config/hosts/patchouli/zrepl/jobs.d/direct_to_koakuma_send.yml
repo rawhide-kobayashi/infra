@@ -1,10 +1,7 @@
 - name: "media to koakuma"
   type: source
-  connect:
-    type: "http"
-    server: "koakuma.gensoukyou.neet.works:13493"
-    listener_name: "media_to_koakuma"
-    client_identity: "patchouli.gensoukyou.neet.works"
+  client_keys:
+    - "koakuma.gensoukyou.neet.works"
   datasets:
     - pattern: "basement/library/NAS"
       recursive: true

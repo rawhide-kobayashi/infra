@@ -1,9 +1,12 @@
 - name: "media to koakuma"
   type: "pull"
+  connect:
+    type: "http"
+    server: "patchouli.gensoukyou.neet.works:13493"
+    listener_name: "media_to_koakuma"
+    client_identity: "koakuma.gensoukyou.neet.works"
   cron: "0 * * * *"
   root_fs: "koumakan/backups/patchouli/mediabackup"
-  client_keys:
-    - "patchouli.gensoukyou.neet.works"
   recv:
     execpipe:
     # mbuffer | unzstd | zfs receive
