@@ -2,7 +2,7 @@
   type: push
   cron: "0 * * * *"
   connect:
-    type: "https"
+    type: "http"
     server: "koakuma.gensoukyou.neet.works:13493"
     listener_name: "media_to_koakuma"
     client_identity: "patchouli.gensoukyou.neet.works"
@@ -45,4 +45,3 @@
       - type: grid
         grid: 1x96h(keep=all) | 336x1h | 28x1d | 8x7d | 3x30d
         regex: '^zrepl_'
-        
