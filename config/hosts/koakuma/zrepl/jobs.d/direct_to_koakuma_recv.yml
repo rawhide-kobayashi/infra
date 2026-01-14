@@ -10,7 +10,7 @@
   recv:
     execpipe:
     # mbuffer | unzstd | zfs receive
-    - [ "/usr/local/bin/mbuffer", "-q", "-s", "1M", "-m", "1G" ]
+    - [ "mbuffer", "-q", "-s", "1M", "-m", "1G" ]
     properties:
       override: {
         "canmount": "noauto",

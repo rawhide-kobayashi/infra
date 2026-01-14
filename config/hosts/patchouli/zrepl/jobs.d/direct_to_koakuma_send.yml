@@ -13,7 +13,7 @@
     raw: false
     execpipe:
     # zfs send | zstd | mbuffer
-    - [ "/usr/local/bin/mbuffer", "-q", "-s", "1M", "-m", "1G" ]
+    - [ "mbuffer", "-q", "-s", "1M", "-m", "1G" ]
     backup_properties: true
     compressed: true
     large_blocks: true
