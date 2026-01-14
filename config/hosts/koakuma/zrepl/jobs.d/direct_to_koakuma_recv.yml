@@ -21,7 +21,7 @@
   replication:
     concurrency:
       steps: 1
-      size_estimates: 1
+      size_estimates: 8
   pruning:
     concurrency: 1
     keep_sender:

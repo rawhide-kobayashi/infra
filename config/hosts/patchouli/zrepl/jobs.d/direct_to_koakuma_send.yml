@@ -10,6 +10,7 @@
     - pattern: "basement/library/homes"
       recursive: true
   send:
+    raw: false
     execpipe:
     # zfs send | zstd | mbuffer
     - [ "/usr/local/bin/mbuffer", "-q", "-s", "1M", "-m", "1G" ]
