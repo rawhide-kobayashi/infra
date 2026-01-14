@@ -9,9 +9,10 @@ Pod=hath.pod
 AddCapability=NET_BIND_SERVICE
 User=1000
 Group=1000
-Exec=ash -c '/data/launch.sh'
+Exec=/data/launch.sh
 WorkingDir=/data
 StopTimeout=100
+RunInit=true
 
 [Service]
 Restart=always
