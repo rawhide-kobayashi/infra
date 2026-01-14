@@ -3,7 +3,7 @@
   connect:
     type: "http"
     server: "https://patchouli.gensoukyou.neet.works:13493"
-    listener_name: "media_to_koakuma"
+    listener_name: "media to koakuma"
     client_identity: "koakuma.gensoukyou.neet.works"
   cron: "0 * * * *"
   root_fs: "koumakan/backups/patchouli/mediabackup"
