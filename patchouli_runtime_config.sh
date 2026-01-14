@@ -46,5 +46,5 @@ systemctl restart smb
 
 echo "Install zrepl configuration..."
 rm -rfv /etc/zrepl/jobs.d/*
-install -vm644 config/hosts/koakuma/zrepl/jobs.d/* /etc/zrepl/jobs.d/
-install -vm644 config/hosts/koakuma/zrepl/zrepl.yml /etc/zrepl/zrepl.yml
+install -vm644 config/hosts/patchouli/zrepl/jobs.d/* /etc/zrepl/jobs.d/
+install -vm644 config/hosts/patchouli/zrepl/zrepl.yml /etc/zrepl/zrepl.yml
