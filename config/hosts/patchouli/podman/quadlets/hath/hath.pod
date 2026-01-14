@@ -1,7 +1,7 @@
 [Pod]
 PodName=hath
 ServiceName=hath
-HostName=hath.koakuma
+HostName=hath.patchouli
 Network=hath-macvlan.network
 SubGIDMap=hath
 SubUIDMap=hath
