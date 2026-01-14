@@ -118,13 +118,13 @@ arch-chroot /mnt sbctl enroll-keys -m
 echo "Installing kernel/ZFS..."
 arch-chroot /mnt pacman -Sy --noconfirm linux-cachyos-bore-lto linux-cachyos-bore-lto-zfs zfs-utils
 
-echo "Enabling ZFS services..."
-arch-chroot /mnt systemctl enable zfs.target
-arch-chroot /mnt systemctl enable zfs-zed.service
-
 echo "Activating zfs-mount-generator..."
 mkdir /mnt/etc/zfs/zfs-list.cache
 touch /mnt/etc/zfs/zfs-list.cache/zroot
+rm -f /mnt/etc/zfs/zpool.cache
+touch /mnt/etc/zfs/zpool.cache
+chmod a-w /mnt/etc/zfs/zpool.cache
+chattr +i /mnt/etc/zfs/zpool.cache
 
 echo "Starting Zed to bootstrap zfs-mount-generator... Wait a few seconds."
 
@@ -133,5 +133,10 @@ pid=pgrep zed
 sleep 5
 kill -INT $pid
 sed -Ei "s|/mnt/?|/|" /mnt/etc/zfs/zfs-list.cache/*
+
+echo "Enabling ZFS services..."
+arch-chroot /mnt systemctl enable zfs.target
+arch-chroot /mnt systemctl enable zfs-zed.service
+arch-chroot /mnt systemctl enable zfs-import-scan.service
 
 echo "Job's done."

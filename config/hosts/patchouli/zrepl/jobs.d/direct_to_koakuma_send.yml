@@ -1,0 +1,48 @@
+jobs:
+  - name: "media to koakuma"
+    type: push
+    cron: "0 * * * *"
+    connect:
+      type: "https"
+      server: "koakuma.gensoukyou.neet.works:13493"
+      listener_name: "media_to_koakuma"
+      client_identity: "patchouli.gensoukyou.neet.works"
+    datasets:
+      - pattern: "basement/library/NAS"
+        recursive: true
+      - pattern: "basement/library/familyshare"
+        recursive: true
+      - pattern: "basement/library/homes"
+        recursive: true
+    send:
+      execpipe:
+      # zfs send | zstd | mbuffer
+      - [ "/usr/local/bin/mbuffer", "-q", "-s", "1M", "-m", "1G" ]
+      backup_properties: true
+      compressed: true
+      large_blocks: true
+      embedded_data: true
+    snapshotting:
+      type: "periodic"
+      prefix: "zrepl_"
+      interval: "10m"
+    replication:
+      concurrency:
+        steps: 1
+        size_estimates: 1
+    pruning:
+      concurrency: 1
+      keep_sender:
+        - type: regex
+          negate: true
+          regex: '^zrepl_'
+        - type: grid
+          grid: 1x24h(keep=all) | 72x1h | 14x1d | 4x7d | 1x30d
+          regex: '^zrepl_'
+      keep_receiver:
+        - type: regex
+          negate: true
+          regex: '^zrepl_'
+        - type: grid
+          grid: 1x96h(keep=all) | 336x1h | 28x1d | 8x7d | 3x30d
+          regex: '^zrepl_'

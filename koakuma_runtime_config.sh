@@ -35,3 +35,8 @@ systemctl restart kanidm-unixd.service
 echo "Install sudoers configuration..."
 rm -rfv /etc/sudoers.d/*
 install -vm440 config/common/sudoers.d/* /etc/sudoers.d/
+
+echo "Install zrepl configuration..."
+rm -rfv /etc/zrepl/jobs.d/*
+install -vm644 config/hosts/koakuma/zrepl/jobs.d/* /etc/zrepl/jobs.d/
+install -vm644 config/hosts/koakuma/zrepl/zrepl.yml /etc/zrepl/zrepl.yml

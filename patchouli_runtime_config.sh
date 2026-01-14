@@ -43,3 +43,8 @@ install -vm440 config/common/sudoers.d/* /etc/sudoers.d/
 echo "Install samba configuration..."
 install -vm644 config/hosts/patchouli/samba/smb.conf /etc/samba/smb.conf
 systemctl restart smb
+
+echo "Install zrepl configuration..."
+rm -rfv /etc/zrepl/jobs.d/*
+install -vm644 config/hosts/koakuma/zrepl/jobs.d/* /etc/zrepl/jobs.d/
+install -vm644 config/hosts/koakuma/zrepl/zrepl.yml /etc/zrepl/zrepl.yml

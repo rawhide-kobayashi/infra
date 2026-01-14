@@ -1,0 +1,18 @@
+[Unit]
+Description=Kanidm server container
+
+[Container]
+Image=docker.io/_/eclipse-temurin:8-jre-alpine-3.23
+ContainerName=hath-server
+Mount=type=bind,src=/var/lib/containers/storage/volumes/hath,dst=/data
+Pod=hath.pod
+AddCapability=NET_BIND_SERVICE
+User=1000
+Group=1000
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

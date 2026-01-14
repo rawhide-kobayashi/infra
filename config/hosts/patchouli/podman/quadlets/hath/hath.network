@@ -1,0 +1,5 @@
+[Network]
+NetworkName=hath-macvlan
+Driver=macvlan
+InterfaceName=br0
+IPAMDriver=dhcp

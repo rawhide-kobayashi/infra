@@ -1,0 +1,275 @@
+include_keys: "keys.d/*.yml"
+
+listen:
+  - addr: "koakuma.gensoukyou.neet.works:13493"
+    tls_cert: "/etc/letsencrypt/live/koakuma.gensoukyou.neet.works/fullchain.pem"
+    tls_key: "/etc/letsencrypt/live/koakuma.gensoukyou.neet.works/privkey.pem"
+    zfs: true
+    
+include_jobs: "jobs.d/*.yml"
+
+# jobs:
+# - name: mamizou_root_backup_2_koakuma
+#   type: pull
+#   connect:
+#     type: tls
+#     address: "mamizou.gensoukyou.neet.works:26619"
+#     ca:   /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/fullchain.pem
+#     cert: /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/cert.pem
+#     key:  /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/privkey.pem
+#     server_cn: mamizou.gensoukyou.neet.works
+#   root_fs: "koumakan/backups/mamizou"
+#   interval: 60m
+#   recv:
+#     properties:
+#       override: {
+#         "canmount": "noauto",
+#         "special_small_blocks": 0
+#       }
+#   replication:
+#     concurrency:
+#       steps: 4
+#       size_estimates: 16
+#   pruning:
+#     keep_sender:
+#       - type: regex
+#         regex: '.*'
+#     keep_receiver:
+#       - type: regex
+#         negate: true
+#         regex: '^zrepl_'
+#       - type: grid
+#         grid: 1x48h(keep=all) | 168x1h | 14x1d | 4x1w
+#         regex: '^zrepl_'
+# 
+# - name: patchouli_root_backup_2_koakuma
+#   type: pull
+#   connect:
+#     type: tls
+#     address: "192.168.101.168:26619"
+#     ca:   /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/fullchain.pem
+#     cert: /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/cert.pem
+#     key:  /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/privkey.pem
+#     server_cn: patchouli.gensoukyou.neet.works
+#   root_fs: "koumakan/backups/patchouli/rootbackup"
+#   interval: 60m
+#   recv:
+#     properties:
+#       override: {
+#         "canmount": "noauto",
+#         "special_small_blocks": 0
+#       }
+#     placeholder:
+#       encryption: off
+#   replication:
+#     concurrency:
+#       steps: 4
+#       size_estimates: 16
+#   pruning:
+#     keep_sender:
+#       - type: regex
+#         regex: '.*'
+#     keep_receiver:
+#       - type: regex
+#         negate: true
+#         regex: '^zrepl_'
+#       - type: grid
+#         grid: 1x48h(keep=all) | 168x1h | 14x1d | 4x1w
+#         regex: '^zrepl_'
+# 
+# - name: patchouli_containers_vms_apps_backup_2_koakuma
+#   type: pull
+#   connect:
+#     type: tls
+#     address: "192.168.101.168:26621"
+#     ca:   /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/fullchain.pem
+#     cert: /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/cert.pem
+#     key:  /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/privkey.pem
+#     server_cn: patchouli.gensoukyou.neet.works
+#   root_fs: "koumakan/backups/patchouli/contvmappbackup"
+#   interval: 60m
+#   recv:
+#     properties:
+#       override: {
+#         "canmount": "noauto",
+#         "special_small_blocks": 0
+#       }
+#     placeholder:
+#       encryption: off
+#   replication:
+#     concurrency:
+#       steps: 4
+#       size_estimates: 16
+#   pruning:
+#     keep_sender:
+#       - type: regex
+#         negate: true
+#         regex: '^zrepl_'
+#       - type: grid
+#         grid: 1x24h(keep=all) | 72x1h | 14x1d
+#         regex: '^zrepl_'
+#     keep_receiver:
+#       - type: regex
+#         negate: true
+#         regex: '^zrepl_'
+#       - type: grid
+#         grid: 1x96h(keep=all) | 336x1h | 28x1d | 8x7d | 3x30d
+#         regex: '^zrepl_'
+# 
+# - name: patchouli_media_backup_2_koakuma
+#   type: pull
+#   connect:
+#     type: tls
+#     address: "192.168.101.168:26622"
+#     ca:   /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/fullchain.pem
+#     cert: /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/cert.pem
+#     key:  /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/privkey.pem
+#     server_cn: patchouli.gensoukyou.neet.works
+#   root_fs: "koumakan/backups/patchouli/mediabackup"
+#   interval: 60m
+#   recv:
+#     properties:
+#       override: {
+#         "canmount": "noauto",
+#         "special_small_blocks": 0
+#       }
+#     placeholder:
+#       encryption: off
+#   replication:
+#     concurrency:
+#       steps: 4
+#       size_estimates: 16
+#   pruning:
+#     keep_sender:
+#       - type: regex
+#         negate: true
+#         regex: '^zrepl_'
+#       - type: grid
+#         grid: 1x24h(keep=all) | 72x1h | 14x1d | 4x7d | 1x30d
+#         regex: '^zrepl_'
+#     keep_receiver:
+#       - type: regex
+#         negate: true
+#         regex: '^zrepl_'
+#       - type: grid
+#         grid: 1x96h(keep=all) | 336x1h | 28x1d | 8x7d | 3x30d
+#         regex: '^zrepl_'
+# 
+# - name: patchouli_scratch_backup_2_koakuma
+#   type: pull
+#   connect:
+#     type: tls
+#     address: "192.168.101.168:26623"
+#     ca:   /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/fullchain.pem
+#     cert: /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/cert.pem
+#     key:  /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/privkey.pem
+#     server_cn: patchouli.gensoukyou.neet.works
+#   root_fs: "koumakan/backups/patchouli/scratchbackup"
+#   interval: 60m
+#   recv:
+#     properties:
+#       override: {
+#         "canmount": "noauto",
+#         "special_small_blocks": 0
+#       }
+#     placeholder:
+#       encryption: off
+#   replication:
+#     concurrency:
+#       steps: 4
+#       size_estimates: 16
+#   pruning:
+#     keep_sender:
+#       - type: regex
+#         negate: true
+#         regex: '^zrepl_'
+#       - type: grid
+#         grid: 1x4h(keep=all) | 24x1h | 3x1d
+#         regex: '^zrepl_'
+#     keep_receiver:
+#       - type: regex
+#         negate: true
+#         regex: '^zrepl_'
+#       - type: grid
+#         grid: 1x24h(keep=all) | 48x1h | 7x1d | 2x7d
+#         regex: '^zrepl_'
+# 
+# - name: patchouli_localbackup_backup_2_koakuma
+#   type: pull
+#   connect:
+#     type: tls
+#     address: "192.168.101.168:26624"
+#     ca:   /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/fullchain.pem
+#     cert: /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/cert.pem
+#     key:  /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/privkey.pem
+#     server_cn: patchouli.gensoukyou.neet.works
+#   root_fs: "koumakan/backups/patchouli/localbackup"
+#   interval: 60m
+#   recv:
+#     properties:
+#       override: {
+#         "canmount": "noauto",
+#         "special_small_blocks": 0
+#       }
+#     placeholder:
+#       encryption: off
+#   replication:
+#     concurrency:
+#       steps: 4
+#       size_estimates: 16
+#   pruning:
+#     keep_sender:
+#       - type: regex
+#         negate: true
+#         regex: '^zrepl_'
+#       - type: grid
+#         grid: 1x48h(keep=all) | 96x1h | 7x1d
+#         regex: '^zrepl_'
+#     keep_receiver:
+#       - type: regex
+#         negate: true
+#         regex: '^zrepl_'
+#       - type: grid
+#         grid: 1x96h(keep=all) | 336x1h | 28x1d | 8x7d | 3x30d
+#         regex: '^zrepl_'
+# 
+# - name: koakuma_root_snapshots
+#   type: snap
+#   filesystems: {
+#     "zroot<": true
+#   }
+#   snapshotting:
+#     type: periodic
+#     interval: 5m
+#     prefix: zrepl_
+#     timestamp_format: human
+#   pruning:
+#     keep:
+#       - type: regex
+#         negate: true
+#         regex: '^zrepl_'
+#       - type: grid
+#         grid: 1x4h(keep=all) | 24x1h | 7x1d
+#         regex: '^zrepl_'
+# 
+# - name: koakuma_root_backup_2_patchouli
+#   type: source
+#   serve:
+#     type: tls
+#     listen: "10.20.30.25:26620"
+#     listen_freebind: true
+#     ca:   /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/fullchain.pem
+#     cert: /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/cert.pem
+#     key:  /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/privkey.pem
+#     client_cns:
+#       - "patchouli.gensoukyou.neet.works"
+#   filesystems: {
+#     "zroot<": true
+#   }
+#   send:
+#     backup_properties: true
+#     compressed: true
+#     large_blocks: true
+#     embedded_data: true
+#   snapshotting:
+#     type: manual

@@ -1,0 +1,8 @@
+[Pod]
+PodName=hath
+ServiceName=hath
+HostName=hath.koakuma
+Network=hath-macvlan.network
+SubGIDMap=hath
+SubUIDMap=hath
+PodmanArgs=--mac-address 52:bc:8e:29:0d:78
