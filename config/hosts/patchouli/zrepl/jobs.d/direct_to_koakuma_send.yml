@@ -22,5 +22,33 @@
     type: "periodic"
     prefix: "zrepl_"
     interval: "30m"
+    written_threshold: 1024
+    timestamp_format: "human"
   pruning:
     concurrency: 1
+
+- name: "scratch to koakuma"
+  type: source
+  client_keys:
+    - "koakuma.gensoukyou.neet.works"
+  datasets:
+    - pattern: "basement/library/scratch"
+      recursive: true
+  send:
+    raw: false
+    execpipe:
+    # zfs send | zstd | mbuffer
+    - [ "mbuffer", "-q", "-s", "1M", "-m", "1G" ]
+    backup_properties: true
+    compressed: true
+    large_blocks: true
+    embedded_data: true
+  snapshotting:
+    type: "periodic"
+    prefix: "zrepl_"
+    interval: "5m"
+    written_threshold: 1024
+    timestamp_format: "human"
+  pruning:
+    concurrency: 1
+    

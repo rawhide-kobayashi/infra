@@ -55,32 +55,6 @@ include_jobs: "jobs.d/*.yml"
 #     prefix: zrepl_
 #     timestamp_format: human
 # 
-# - name: patchouli_media_backup_2_koakuma
-#   type: source
-#   serve:
-#     type: tls
-#     listen: "192.168.101.168:26622"
-#     listen_freebind: true
-#     ca:   /etc/letsencrypt/live/patchouli.gensoukyou.neet.works/fullchain.pem
-#     cert: /etc/letsencrypt/live/patchouli.gensoukyou.neet.works/cert.pem
-#     key:  /etc/letsencrypt/live/patchouli.gensoukyou.neet.works/privkey.pem
-#     client_cns:
-#       - "koakuma.gensoukyou.neet.works"
-#   filesystems: {
-#     "basement/library/NAS<": true,
-#     "basement/library/familyshare<": true,
-#     "basement/library/homes<": true
-#   }
-#   send:
-#     backup_properties: true
-#     compressed: true
-#     large_blocks: true
-#     embedded_data: true
-#   snapshotting:
-#     type: periodic
-#     interval: 60m
-#     prefix: zrepl_
-#     timestamp_format: human
 # 
 # - name: patchouli_scratch_backup_2_koakuma
 #   type: source

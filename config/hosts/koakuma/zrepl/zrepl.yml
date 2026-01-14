@@ -116,44 +116,6 @@ include_jobs: "jobs.d/*.yml"
 #         grid: 1x96h(keep=all) | 336x1h | 28x1d | 8x7d | 3x30d
 #         regex: '^zrepl_'
 # 
-# - name: patchouli_media_backup_2_koakuma
-#   type: pull
-#   connect:
-#     type: tls
-#     address: "192.168.101.168:26622"
-#     ca:   /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/fullchain.pem
-#     cert: /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/cert.pem
-#     key:  /etc/letsencrypt/live/koakuma.gensoukyou.neet.works/privkey.pem
-#     server_cn: patchouli.gensoukyou.neet.works
-#   root_fs: "koumakan/backups/patchouli/mediabackup"
-#   interval: 60m
-#   recv:
-#     properties:
-#       override: {
-#         "canmount": "noauto",
-#         "special_small_blocks": 0
-#       }
-#     placeholder:
-#       encryption: off
-#   replication:
-#     concurrency:
-#       steps: 4
-#       size_estimates: 16
-#   pruning:
-#     keep_sender:
-#       - type: regex
-#         negate: true
-#         regex: '^zrepl_'
-#       - type: grid
-#         grid: 1x24h(keep=all) | 72x1h | 14x1d | 4x7d | 1x30d
-#         regex: '^zrepl_'
-#     keep_receiver:
-#       - type: regex
-#         negate: true
-#         regex: '^zrepl_'
-#       - type: grid
-#         grid: 1x96h(keep=all) | 336x1h | 28x1d | 8x7d | 3x30d
-#         regex: '^zrepl_'
 # 
 # - name: patchouli_scratch_backup_2_koakuma
 #   type: pull
