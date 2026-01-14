@@ -16,4 +16,4 @@ echo "Copying letsencrypt hooks..."
 install -vm744 config/hosts/patchouli/letsencrypt/hooks/deploy/* /etc/letsencrypt/renewal-hooks/deploy/
 
 echo "Copying kanidm config..."
-install -vm640 -o100000 -g101000 config/hosts/patchouli/podman/config/kanidm/server.toml /var/lib/containers/storage/volumes/kanidm/
+install -vm640 -o100000 -g101000 config/hosts/patchouli/podman/config/kanidm/server.toml /var/lib/containers/storage/volumes_zroot/kanidm/
