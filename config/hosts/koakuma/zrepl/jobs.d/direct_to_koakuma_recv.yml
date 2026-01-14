@@ -1,19 +1,19 @@
-jobs:
-  - name: "media to koakuma"
-    type: "sink"
-    root_fs: "koumakan/backups/patchouli/mediabackup"
-    client_keys:
-      - "patchouli.gensoukyou.neet.works"
-    recv:
-      execpipe:
-      # mbuffer | unzstd | zfs receive
-      - [ "/usr/local/bin/mbuffer", "-q", "-s", "1M", "-m", "1G" ]
-      properties:
-        override: {
-          "canmount": "noauto",
-          "special_small_blocks": 0
-        }
-      placeholder:
-        encryption: off
-    pruning:
-      concurrency: 1
+- name: "media to koakuma"
+  type: "sink"
+  root_fs: "koumakan/backups/patchouli/mediabackup"
+  client_keys:
+    - "patchouli.gensoukyou.neet.works"
+  recv:
+    execpipe:
+    # mbuffer | unzstd | zfs receive
+    - [ "/usr/local/bin/mbuffer", "-q", "-s", "1M", "-m", "1G" ]
+    properties:
+      override: {
+        "canmount": "noauto",
+        "special_small_blocks": 0
+      }
+    placeholder:
+      encryption: off
+  pruning:
+    concurrency: 1
+    
