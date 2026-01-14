@@ -11,6 +11,7 @@ User=1000
 Group=1000
 Exec=/data/launch.sh
 WorkingDir=/data
+StopTimeout=100
 
 [Service]
 Restart=always
