@@ -2,7 +2,7 @@
 Description=Hath server container
 
 [Container]
-Image=docker.io/library/eclipse-temurin:8-jre-alpine-3.23
+Image=docker.io/library/eclipse-temurin:8-jre-ubi10-minimal
 ContainerName=hath-server
 Mount=type=bind,src=/var/lib/containers/storage/volumes/hath,dst=/data
 Pod=hath.pod
