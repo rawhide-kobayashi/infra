@@ -1,6 +1,5 @@
 - name: "media to koakuma"
-  type: push
-  cron: "0 * * * *"
+  type: source
   connect:
     type: "http"
     server: "koakuma.gensoukyou.neet.works:13493"
@@ -24,24 +23,6 @@
   snapshotting:
     type: "periodic"
     prefix: "zrepl_"
-    interval: "10m"
-  replication:
-    concurrency:
-      steps: 1
-      size_estimates: 1
+    interval: "30m"
   pruning:
     concurrency: 1
-    keep_sender:
-      - type: regex
-        negate: true
-        regex: '^zrepl_'
-      - type: grid
-        grid: 1x24h(keep=all) | 72x1h | 14x1d | 4x7d | 1x30d
-        regex: '^zrepl_'
-    keep_receiver:
-      - type: regex
-        negate: true
-        regex: '^zrepl_'
-      - type: grid
-        grid: 1x96h(keep=all) | 336x1h | 28x1d | 8x7d | 3x30d
-        regex: '^zrepl_'
