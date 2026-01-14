@@ -1,5 +1,5 @@
 [Unit]
-Description=Kanidm server container
+Description=Hath server container
 
 [Container]
 Image=docker.io/_/eclipse-temurin:8-jre-alpine-3.23
