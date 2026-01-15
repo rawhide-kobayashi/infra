@@ -28,61 +28,6 @@ include_jobs: "jobs.d/*.yml"
 #         grid: 1x4h(keep=all) | 24x1h | 7x1d
 #         regex: '^zrepl_'
 # 
-# - name: patchouli_containers_vms_apps_backup_2_koakuma
-#   type: source
-#   serve:
-#     type: tls
-#     listen: "192.168.101.168:26621"
-#     listen_freebind: true
-#     ca:   /etc/letsencrypt/live/patchouli.gensoukyou.neet.works/fullchain.pem
-#     cert: /etc/letsencrypt/live/patchouli.gensoukyou.neet.works/cert.pem
-#     key:  /etc/letsencrypt/live/patchouli.gensoukyou.neet.works/privkey.pem
-#     client_cns:
-#       - "koakuma.gensoukyou.neet.works"
-#   filesystems: {
-#     "basement/library/container<": true,
-#     "basement/library/webapps<": true,
-#     "basement/library/VM<": true
-#   }
-#   send:
-#     backup_properties: true
-#     compressed: true
-#     large_blocks: true
-#     embedded_data: true
-#   snapshotting:
-#     type: periodic
-#     interval: 15m
-#     prefix: zrepl_
-#     timestamp_format: human
-# 
-# 
-# - name: patchouli_scratch_backup_2_koakuma
-#   type: source
-#   serve:
-#     type: tls
-#     listen: "192.168.101.168:26623"
-#     listen_freebind: true
-#     ca:   /etc/letsencrypt/live/patchouli.gensoukyou.neet.works/fullchain.pem
-#     cert: /etc/letsencrypt/live/patchouli.gensoukyou.neet.works/cert.pem
-#     key:  /etc/letsencrypt/live/patchouli.gensoukyou.neet.works/privkey.pem
-#     client_cns:
-#       - "koakuma.gensoukyou.neet.works"
-#   filesystems: {
-#     "basement/library/scratch<": true,
-#     "fastscratch<": true,
-#     "basement/library/chia<": true,
-#   }
-#   send:
-#     backup_properties: true
-#     compressed: true
-#     large_blocks: true
-#     embedded_data: true
-#   snapshotting:
-#     type: periodic
-#     interval: 30m
-#     prefix: zrepl_
-#     timestamp_format: human
-# 
 # - name: patchouli_localbackup_backup_2_koakuma
 #   type: source
 #   serve:

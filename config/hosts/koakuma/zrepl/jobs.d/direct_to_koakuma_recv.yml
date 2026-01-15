@@ -79,3 +79,85 @@
       - type: grid
         grid: 1x24h(keep=all) | 48x1h | 7x1d | 2x7d
         regex: '^zrepl_'
+
+- name: "containers to koakuma"
+  type: "pull"
+  connect:
+    type: "http"
+    server: "https://10gdedi.patchouli.gensoukyou.neet.works:13493"
+    listener_name: "containers to koakuma"
+    client_identity: "koakuma.gensoukyou.neet.works"
+  cron: "11 * * * *"
+  root_fs: "koumakan/backups/patchouli/containersbackup"
+  recv:
+    execpipe:
+    # mbuffer | unzstd | zfs receive
+    - [ "mbuffer", "-q", "-s", "1M", "-m", "1G" ]
+    properties:
+      override: {
+        "canmount": "noauto",
+        "special_small_blocks": 0
+      }
+    placeholder:
+      encryption: off
+  replication:
+    concurrency:
+      steps: 1
+      size_estimates: 8
+  pruning:
+    concurrency: 1
+    keep_sender:
+      - type: regex
+        negate: true
+        regex: '^zrepl_'
+      - type: grid
+        grid: 1x24h(keep=all) | 72x1h | 14x1d
+        regex: '^zrepl_'
+    keep_receiver:
+      - type: regex
+        negate: true
+        regex: '^zrepl_'
+      - type: grid
+        grid: 1x96h(keep=all) | 336x1h | 28x1d | 8x7d | 3x30d
+        regex: '^zrepl_'
+
+- name: "hath to koakuma"
+  type: "pull"
+  connect:
+    type: "http"
+    server: "https://10gdedi.patchouli.gensoukyou.neet.works:13493"
+    listener_name: "hath to koakuma"
+    client_identity: "koakuma.gensoukyou.neet.works"
+  cron: "33 2 * * *"
+  root_fs: "koumakan/backups/patchouli/hathbackup"
+  recv:
+    execpipe:
+    # mbuffer | unzstd | zfs receive
+    - [ "mbuffer", "-q", "-s", "1M", "-m", "1G" ]
+    properties:
+      override: {
+        "canmount": "noauto",
+        "special_small_blocks": 0
+      }
+    placeholder:
+      encryption: off
+  replication:
+    concurrency:
+      steps: 1
+      size_estimates: 8
+  pruning:
+    concurrency: 1
+    keep_sender:
+      - type: regex
+        negate: true
+        regex: '^zrepl_'
+      - type: grid
+        grid: 1x4h(keep=all) | 24x1h | 3x1d
+        regex: '^zrepl_'
+    keep_receiver:
+      - type: regex
+        negate: true
+        regex: '^zrepl_'
+      - type: grid
+        grid: 1x24h(keep=all) | 48x1h | 7x1d | 2x7d
+        regex: '^zrepl_'
