@@ -4,8 +4,8 @@ UUID=2B36-4A7F          /efi            vfat            rw,relatime,fmask=0022,d
 # /dev/sdb1
 UUID=2BB2-D7D3          /efi2           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro   0 2
 
-/srv/zfs/NAS                            /srv/smb/NAS           none bind,defaults,nofail,x-systemd.requires=zfs-mount.service 0 0
-/u/6414d3de-8970-4231-a0a5-61071538c2fd /srv/smb/rawhide       none bind,defaults,nofail,x-systemd.requires=zfs-mount.service 0 0
-/srv/zfs/backups/local/sakuya           /srv/smb/sakuya_backup none bind,defaults,nofail,x-systemd.requires=zfs-mount.service 0 0
-/srv/zfs/scratch                        /srv/smb/scratch       none bind,defaults,nofail,x-systemd.requires=zfs-mount.service 0 0
-/srv/zfs/familyshare                    /srv/smb/familyshare   none bind,defaults,nofail,x-systemd.requires=zfs-mount.service 0 0
+/srv/zfs/NAS                            /srv/smb/NAS           none rbind,defaults,nofail,x-systemd.requires=zfs-mount.service 0 0
+/u/6414d3de-8970-4231-a0a5-61071538c2fd /srv/smb/rawhide       none rbind,defaults,nofail,x-systemd.requires=zfs-mount.service 0 0
+/srv/zfs/backups/local/sakuya           /srv/smb/sakuya_backup none rbind,defaults,nofail,x-systemd.requires=zfs-mount.service 0 0
+/srv/zfs/scratch                        /srv/smb/scratch       none rbind,defaults,nofail,x-systemd.requires=zfs-mount.service 0 0
+/srv/zfs/familyshare                    /srv/smb/familyshare   none rbind,defaults,nofail,x-systemd.requires=zfs-mount.service 0 0
