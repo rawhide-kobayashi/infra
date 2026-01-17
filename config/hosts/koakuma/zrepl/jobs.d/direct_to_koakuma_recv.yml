@@ -10,7 +10,7 @@
   recv:
     execpipe:
     # mbuffer | unzstd | zfs receive
-    - [ "mbuffer", "-q", "-s", "1M", "-m", "1G" ]
+    - [ "mbuffer", "-q", "-s", "128k", "-m", "1G" ]
     properties:
       override: {
         "canmount": "noauto",
@@ -51,7 +51,7 @@
   recv:
     execpipe:
     # mbuffer | unzstd | zfs receive
-    - [ "mbuffer", "-q", "-s", "1M", "-m", "1G" ]
+    - [ "mbuffer", "-q", "-s", "128k", "-m", "1G" ]
     properties:
       override: {
         "canmount": "noauto",
@@ -92,7 +92,7 @@
   recv:
     execpipe:
     # mbuffer | unzstd | zfs receive
-    - [ "mbuffer", "-q", "-s", "1M", "-m", "1G" ]
+    - [ "mbuffer", "-q", "-s", "128k", "-m", "1G" ]
     properties:
       override: {
         "canmount": "noauto",
@@ -133,7 +133,7 @@
   recv:
     execpipe:
     # mbuffer | unzstd | zfs receive
-    - [ "mbuffer", "-q", "-s", "1M", "-m", "1G" ]
+    - [ "mbuffer", "-q", "-s", "128k", "-m", "1G" ]
     properties:
       override: {
         "canmount": "noauto",

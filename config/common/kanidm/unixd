@@ -172,3 +172,27 @@ pam_allowed_login_groups = ["idm_unix_admins"]
 [[kanidm.map_group]]
 local = "wheel"
 with = "superusers"
+
+[[kanidm.map_group]]
+local = "floppy"
+with = "desktop-hw"
+
+[[kanidm.map_group]]
+local = "scanner"
+with = "desktop-hw"
+
+[[kanidm.map_group]]
+local = "audio"
+with = "desktop-hw"
+
+[[kanidm.map_group]]
+local = "render"
+with = "desktop-hw"
+
+[[kanidm.map_group]]
+local = "uucp"
+with = "desktop-hw"
+
+[[kanidm.map_group]]
+local = "video"
+with = "desktop-hw"

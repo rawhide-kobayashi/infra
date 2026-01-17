@@ -2,14 +2,14 @@ include_keys: "keys.d/*.yml"
 
 listen:
   - addr: ":13493"
-    tls_cert: "/etc/letsencrypt/live/koakuma.gensoukyou.neet.works/fullchain.pem"
-    tls_key: "/etc/letsencrypt/live/koakuma.gensoukyou.neet.works/privkey.pem"
+    tls_cert: "/etc/letsencrypt/live/mamizou.gensoukyou.neet.works/fullchain.pem"
+    tls_key: "/etc/letsencrypt/live/mamizou.gensoukyou.neet.works/privkey.pem"
     zfs: true
     
 include_jobs: "jobs.d/*.yml"
 
 jobs:
-  - name: "koakuma zroot snapshots"
+  - name: "mamizou zroot snapshots"
     type: snap
     filesystems: {
       "zroot<": true
@@ -29,7 +29,7 @@ jobs:
           grid: 1x4h(keep=all) | 24x1h | 7x1d
           regex: '^zrepl_'
 
-  - name: "koakuma zroot fanout"
+  - name: "mamizou zroot fanout"
     type: source
     client_keys:
       - "koakuma.gensoukyou.neet.works"

@@ -8,6 +8,49 @@ listen:
     
 include_jobs: "jobs.d/*.yml"
 
+jobs:
+  - name: "patchouli zroot snapshots"
+    type: snap
+    filesystems: {
+      "zroot<": true
+    }
+    snapshotting:
+      type: periodic
+      interval: 5m
+      prefix: zrepl_
+      written_threshold: 1024
+      timestamp_format: human
+    pruning:
+      keep:
+        - type: regex
+          negate: true
+          regex: '^zrepl_'
+        - type: grid
+          grid: 1x4h(keep=all) | 24x1h | 7x1d
+          regex: '^zrepl_'
+
+  - name: "patchouli zroot fanout"
+    type: source
+    client_keys:
+      - "koakuma.gensoukyou.neet.works"
+      - "patchouli.gensoukyou.neet.works"
+    datasets:
+      - pattern: "zroot"
+        recursive: true
+    send:
+      raw: false
+      execpipe:
+      # zfs send | zstd | mbuffer
+      - [ "mbuffer", "-q", "-s", "128k", "-m", "1G" ]
+      backup_properties: true
+      compressed: true
+      large_blocks: true
+      embedded_data: true
+    snapshotting:
+      type: "manual"
+    pruning:
+      concurrency: 1
+
 # jobs:
 # - name: patchouli_root_snapshots
 #   type: snap

@@ -1,0 +1,35 @@
+- name: "mamizou zroot to patchouli"
+  type: "pull"
+  connect:
+    type: "http"
+    server: "https://mamizou.gensoukyou.neet.works:13493"
+    listener_name: "mamizou zroot fanout"
+    client_identity: "patchouli.gensoukyou.neet.works"
+  cron: "38 * * * *"
+  root_fs: "basement/library/backups/remote/mamizou"
+  recv:
+    execpipe:
+    # mbuffer | unzstd | zfs receive
+    - [ "mbuffer", "-q", "-s", "128k", "-m", "1G" ]
+    properties:
+      override: {
+        "canmount": "noauto"
+      }
+    placeholder:
+      encryption: off
+  replication:
+    concurrency:
+      steps: 1
+      size_estimates: 8
+  pruning:
+    concurrency: 1
+    keep_sender:
+      - type: regex
+        regex: '.*'
+    keep_receiver:
+      - type: regex
+        negate: true
+        regex: '^zrepl_'
+      - type: grid
+        grid: 1x48h(keep=all) | 168x1h | 14x1d | 4x1w
+        regex: '^zrepl_'
