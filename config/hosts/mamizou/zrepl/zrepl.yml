@@ -41,6 +41,7 @@ jobs:
       raw: false
       execpipe:
       # zfs send | zstd | mbuffer
+      - [ "zstd", "-3" ]
       - [ "mbuffer", "-q", "-s", "128k", "-m", "100M" ]
       backup_properties: true
       compressed: true
