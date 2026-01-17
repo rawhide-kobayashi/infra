@@ -9,8 +9,6 @@
   root_fs: "basement/library/backups/remote/mamizou"
   recv:
     execpipe:
-    # mbuffer | unzstd | zfs receive
-    - [ "mbuffer", "-q", "-s", "128k", "-m", "100M" ]
     - [ "unzstd" ]
     properties:
       override: {

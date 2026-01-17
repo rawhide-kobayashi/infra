@@ -8,9 +8,6 @@
   cron: "5 2 * * *"
   root_fs: "koumakan/backups/patchouli/mediabackup"
   recv:
-    execpipe:
-    # mbuffer | unzstd | zfs receive
-    - [ "mbuffer", "-q", "-s", "128k", "-m", "1G" ]
     properties:
       override: {
         "canmount": "noauto",
@@ -49,9 +46,6 @@
   cron: "22 * * * *"
   root_fs: "koumakan/backups/patchouli/scratchbackup"
   recv:
-    execpipe:
-    # mbuffer | unzstd | zfs receive
-    - [ "mbuffer", "-q", "-s", "128k", "-m", "1G" ]
     properties:
       override: {
         "canmount": "noauto",
@@ -90,9 +84,6 @@
   cron: "11 * * * *"
   root_fs: "koumakan/backups/patchouli/containersbackup"
   recv:
-    execpipe:
-    # mbuffer | unzstd | zfs receive
-    - [ "mbuffer", "-q", "-s", "128k", "-m", "1G" ]
     properties:
       override: {
         "canmount": "noauto",
@@ -131,9 +122,6 @@
   cron: "33 2 * * *"
   root_fs: "koumakan/backups/patchouli/hathbackup"
   recv:
-    execpipe:
-    # mbuffer | unzstd | zfs receive
-    - [ "mbuffer", "-q", "-s", "128k", "-m", "1G" ]
     properties:
       override: {
         "canmount": "noauto",

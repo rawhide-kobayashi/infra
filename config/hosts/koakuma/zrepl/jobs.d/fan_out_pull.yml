@@ -9,8 +9,6 @@
   root_fs: "koumakan/backups/mamizou"
   recv:
     execpipe:
-    # mbuffer | unzstd | zfs receive
-    - [ "mbuffer", "-q", "-s", "128k", "-m", "100MG" ]
     - [ "unzstd" ]
     properties:
       override: {
