@@ -25,16 +25,16 @@ set -euo pipefail
 # sed -i 's/MODULES=()/MODULES=(zfs)/' /etc/mkinitcpio.conf
 # sed -i 's/HOOKS=(base .*/HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block zfs filesystems)/' /etc/mkinitcpio.conf
 
-# echo "Copy kanidm configuration & restart daemons..."
-# rm -rfv /etc/kanidm/*
-# install -vm644 config/common/kanidm/* /etc/kanidm/
-# install -vm644 config/common/pam.d/* /etc/pam.d/
-# install -vm644 config/common/nsswitch.conf /etc/nsswitch.conf
-# systemctl restart kanidm-unixd.service
+echo "Copy kanidm configuration & restart daemons..."
+rm -rfv /etc/kanidm/*
+install -vm644 config/common/kanidm/* /etc/kanidm/
+install -vm644 config/common/pam.d/* /etc/pam.d/
+install -vm644 config/common/nsswitch.conf /etc/nsswitch.conf
+systemctl restart kanidm-unixd.service
 
-# echo "Install sudoers configuration..."
-# rm -rfv /etc/sudoers.d/*
-# install -vm440 config/common/sudoers.d/* /etc/sudoers.d/
+echo "Install sudoers configuration..."
+rm -rfv /etc/sudoers.d/*
+install -vm440 config/common/sudoers.d/* /etc/sudoers.d/
 
 echo "Install zrepl configuration..."
 rm -rfv /etc/zrepl/jobs.d/*
