@@ -196,3 +196,7 @@ with = "desktop-hw"
 [[kanidm.map_group]]
 local = "video"
 with = "desktop-hw"
+
+[[kanidm.map_group]]
+local = "mail"
+with = "email_users"
