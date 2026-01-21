@@ -1,0 +1,7 @@
+[Pod]
+PodName=kanidm
+ServiceName=kanidm
+HostName=kanidm.mamizou
+Network=host
+SubGIDMap=kanidm
+SubUIDMap=kanidm
