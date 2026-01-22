@@ -4,7 +4,7 @@ Description=uptime-kuma server container
 [Container]
 Image=docker.io/louislam/uptime-kuma:2.0.2-rootless
 ContainerName=uptime-kuma-server
-Mount=type=bind,src=/var/lib/containers/storage/volumes/uptime-kuma,dst=/data
+Mount=type=bind,src=/var/lib/containers/storage/volumes/uptime-kuma,dst=/app/data
 Pod=uptime-kuma.pod
 User=1000
 Group=1000
