@@ -2,6 +2,6 @@
 PodName=uptime-kuma
 ServiceName=uptime-kuma
 HostName=uptime-kuma.mamizou
-Network=host
+Network=private
 SubGIDMap=uptime-kuma
 SubUIDMap=uptime-kuma
