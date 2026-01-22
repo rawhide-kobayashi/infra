@@ -2,7 +2,7 @@
 PodName=uptime-kuma
 ServiceName=uptime-kuma
 HostName=uptime-kuma.mamizou
-Network=private
+Network=bridge
 PublishPort=127.0.0.1:3001:3001
 SubGIDMap=uptime-kuma
 SubUIDMap=uptime-kuma
