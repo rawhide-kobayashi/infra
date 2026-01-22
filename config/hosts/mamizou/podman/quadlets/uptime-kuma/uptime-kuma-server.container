@@ -8,6 +8,7 @@ Mount=type=bind,src=/var/lib/containers/storage/volumes/uptime-kuma,dst=/app/dat
 Pod=uptime-kuma.pod
 User=1000
 Group=1000
+AddCapability=CAP_NET_RAW
 
 [Service]
 Restart=always
