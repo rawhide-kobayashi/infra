@@ -8,7 +8,6 @@ Mount=type=bind,src=/var/lib/containers/storage/volumes/uptime-kuma,dst=/data
 Pod=uptime-kuma.pod
 User=1000
 Group=1000
-PublishPort=127.0.0.1:3001:3001
 
 [Service]
 Restart=always
