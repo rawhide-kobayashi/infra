@@ -1,0 +1,7 @@
+[Pod]
+PodName=uptime-kuma
+ServiceName=uptime-kuma
+HostName=uptime-kuma.mamizou
+Network=host
+SubGIDMap=uptime-kuma
+SubUIDMap=uptime-kuma
