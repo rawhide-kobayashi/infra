@@ -19,7 +19,7 @@ cp -Rv /etc/mkinitcpio.d/* /tmp/
 for preset in /tmp/*.preset; do
     sed -i 's|/efi/EFI/Linux|/efi/EFI/Linux_checkpoint|g' $preset
     sed -i 's|\.efi|-checkpoint.efi|g' $preset
-    mkinitcpio -p $preset
+    mkinitcpio -p $preset --cmdline /tmp/cmdline
 done
 
 cp -Rv /efi/EFI/Linux/* /efi/EFI/Linux_bak/
@@ -35,3 +35,4 @@ fi
 
 zfs snapshot zroot/roots/default@upgrade_checkpoint
 zfs clone zroot/roots/default@upgrade_checkpoint zroot/roots/default_checkpoint
+zfs snapshot zroot/var/lib/pacman@upgrade_checkpoint
