@@ -32,6 +32,7 @@ zfs list -t snapshot zroot/roots/default@upgrade_checkpoint
 
 if [[ "$?" == "0" ]]; then
     zfs destroy -Rv zroot/roots/default@upgrade_checkpoint
+fi
 
 zfs list -t snapshot zroot/var/lib/pacman@upgrade_checkpoint
 
