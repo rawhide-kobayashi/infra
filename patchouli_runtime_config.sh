@@ -27,7 +27,11 @@ install -vm644 config/hosts/patchouli/modprobe.d/* /etc/modprobe.d/
 
 echo "Modifying mkinitcpio.conf for ZFS..."
 sed -i 's/MODULES=()/MODULES=(zfs)/' /etc/mkinitcpio.conf
-sed -i 's/HOOKS=(base .*/HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block zfs filesystems)/' /etc/mkinitcpio.conf
+sed -i 's/HOOKS=(base .*/HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block zfs zfs-nocache filesystems)/' /etc/mkinitcpio.conf
+
+echo "Copy initcpio hooks..."
+rm -rfv /etc/initcpio/install/*
+install -vm644 config/common/initcpio/install/*
 
 echo "Copy kanidm configuration & restart daemons..."
 rm -rfv /etc/kanidm/*

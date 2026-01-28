@@ -1,0 +1,3 @@
+build() {
+    [[ -f /etc/zfs/zpool.cache ]] && rm -f "${BUILDROOT}/etc/zfs/zpool.cache.org"
+}
