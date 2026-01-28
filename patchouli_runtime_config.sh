@@ -31,7 +31,7 @@ sed -i 's/HOOKS=(base .*/HOOKS=(base udev autodetect microcode modconf kms keybo
 
 echo "Copy initcpio hooks..."
 rm -rfv /etc/initcpio/install/*
-install -vm644 config/common/initcpio/install/*
+install -vm644 config/common/initcpio/install/* /etc/initcpio/install/
 
 echo "Copy kanidm configuration & restart daemons..."
 rm -rfv /etc/kanidm/*
