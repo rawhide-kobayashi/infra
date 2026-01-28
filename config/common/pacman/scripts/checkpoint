@@ -27,13 +27,13 @@ cp -Rv /efi/EFI/Linux/* /efi/EFI/Linux_bak/
 rm -rfv /tmp/*.preset
 rm -v /tmp/cmdline
 
-set +o pipefail
+set +e
 zfs list -t snapshot zroot/roots/default@upgrade_checkpoint
 
 if [[ "$?" == "0" ]]; then
     zfs destroy -Rv zroot/roots/default@upgrade_checkpoint
 fi
-set -o pipefail
+set -e
 
 zfs snapshot zroot/roots/default@upgrade_checkpoint
 zfs clone zroot/roots/default@upgrade_checkpoint zroot/roots/default_checkpoint
