@@ -1,0 +1,10 @@
+[Pod]
+PodName=immich
+ServiceName=immich
+HostName=immich
+Network=immich-macvlan.network
+SubGIDMap=immich
+SubUIDMap=immich
+PodmanArgs=--mac-address a6:a5:1a:22:28:1b
+Volume=/var/lib/containers/storage/volumes/immich/db:/var/lib/postgresql/data:z,rbind
+Volume=/var/lib/containers/storage/volumes/immich/bulk:/data:z
