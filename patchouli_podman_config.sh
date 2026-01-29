@@ -9,8 +9,8 @@ echo "Reloading systemctl daemon..."
 systemctl daemon-reload
 
 echo "Copying subuid/gid file..."
-install -vm644 config/hosts/patchouli/subuid /etc/subuid
-install -vm644 config/hosts/patchouli/subgid /etc/subgid
+install -vm644 config/subuid /etc/subuid
+install -vm644 config/subgid /etc/subgid
 
 echo "Copying letsencrypt hooks..."
 install -vm744 config/hosts/patchouli/letsencrypt/hooks/deploy/* /etc/letsencrypt/renewal-hooks/deploy/
