@@ -1,0 +1,5 @@
+[Network]
+NetworkName=navidrome-macvlan
+Driver=macvlan
+InterfaceName=br0
+IPAMDriver=dhcp
