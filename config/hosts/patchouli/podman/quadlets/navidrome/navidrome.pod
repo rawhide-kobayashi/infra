@@ -1,7 +1,7 @@
 [Pod]
 PodName=navidrome
 ServiceName=navidrome
-HostName=navidrome.koakuma
+HostName=navidrome
 Network=navidrome-macvlan.network
 SubGIDMap=navidrome
 SubUIDMap=navidrome

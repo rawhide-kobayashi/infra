@@ -1,7 +1,7 @@
 [Pod]
 PodName=kanidm
 ServiceName=kanidm
-HostName=kanidm.koakuma
+HostName=kanidm
 Network=kanidm-macvlan.network
 SubGIDMap=kanidm
 SubUIDMap=kanidm
