@@ -70,24 +70,3 @@
   pruning:
     concurrency: 1
 
-- name: "hath to koakuma"
-  type: source
-  client_keys:
-    - "koakuma.gensoukyou.neet.works"
-  datasets:
-    - pattern: "basement/library/containers/podman_volumes/hath"
-      recursive: true
-  send:
-    raw: false
-    backup_properties: true
-    compressed: true
-    large_blocks: true
-    embedded_data: true
-  snapshotting:
-    type: "periodic"
-    prefix: "zrepl_"
-    interval: "60m"
-    written_threshold: 1024
-    timestamp_format: "human"
-  pruning:
-    concurrency: 1
