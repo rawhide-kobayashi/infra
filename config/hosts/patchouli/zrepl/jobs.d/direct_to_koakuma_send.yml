@@ -9,6 +9,8 @@
       recursive: true
     - pattern: "basement/library/homes"
       recursive: true
+    - pattern: "shelf/Media"
+      recursive: true
   send:
     raw: false
     backup_properties: true
