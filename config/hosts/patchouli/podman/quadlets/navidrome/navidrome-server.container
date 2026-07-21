@@ -5,7 +5,7 @@ Description=Navidrome server container
 Image=docker.io/deluan/navidrome:0.63.2
 ContainerName=navidrome-server
 Mount=type=bind,src=/var/lib/containers/storage/volumes/navidrome,dst=/data
-Mount=type=bind,src=/srv/zfs/NAS/Media/Music,dst=/music,ro
+Mount=type=bind,src=/srv/zfs/Media/Music,dst=/music,ro
 Pod=navidrome.pod
 AddCapability=NET_BIND_SERVICE
 User=1000
