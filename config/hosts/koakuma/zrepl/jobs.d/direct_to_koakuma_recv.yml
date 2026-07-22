@@ -26,14 +26,14 @@
         negate: true
         regex: '^zrepl_'
       - type: grid
-        grid: 1x24h(keep=all) | 72x1h | 14x1d | 4x7d | 1x30d
+        grid: 1x24h(keep=all) | 72x1h | 14x1d
         regex: '^zrepl_'
     keep_receiver:
       - type: regex
         negate: true
         regex: '^zrepl_'
       - type: grid
-        grid: 1x96h(keep=all) | 336x1h | 28x1d | 8x7d | 3x30d
+        grid: 1x96h(keep=all) | 336x1h | 28x1d | 8x7d | 6x30d
         regex: '^zrepl_'
 
 - name: "scratch to koakuma"
@@ -109,5 +109,5 @@
         negate: true
         regex: '^zrepl_'
       - type: grid
-        grid: 1x96h(keep=all) | 336x1h | 28x1d | 8x7d | 3x30d
+        grid: 1x96h(keep=all) | 336x1h | 28x1d | 8x7d | 6x30d
         regex: '^zrepl_'
