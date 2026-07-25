@@ -1,0 +1,8 @@
+[Pod]
+PodName=audiomuse
+ServiceName=audiomuse
+HostName=audiomuse
+Network=audiomuse-macvlan.network
+SubGIDMap=audiomuse
+SubUIDMap=audiomuse
+PodmanArgs=--mac-address 02:08:6c:f4:c4:7e

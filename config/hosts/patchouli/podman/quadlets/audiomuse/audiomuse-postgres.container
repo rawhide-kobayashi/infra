@@ -1,0 +1,25 @@
+[Unit]
+Description=A postgres unit for AudioMuse-AI
+Documentation=https://neptunehub.github.io/AudioMuse-AI/
+
+[Container]
+ContainerName=audiomuse-postgres
+Image=docker.io/postgres:15-alpine
+Pod=audiomuse.pod
+Mount=type=bind,src=/var/lib/containers/storage/volumes/audiomuse/postgres,dst=/data
+AutoUpdate=registry
+
+#Env
+Environment=POSTGRES_USER=audiomuse 
+Secret=audiomuse-db-password,type=env,target=POSTGRES_PASSWORD
+Environment=POSTGRES_DB=audiomusedb
+
+#Healthcheck
+HealthCmd=nc -z localhost 5432 || exit 1
+HealthInterval=60s
+HealthTimeout=5s
+HealthStartPeriod=60s
+HealthOnFailure=kill
+
+[Service]
+Restart=always

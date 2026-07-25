@@ -12,6 +12,8 @@ User=1000
 Group=1000
 EnvironmentFile=/etc/containers/systemd/navidrome/navidrome.env
 Secret=navidrome-db-password,type=env,target=ND_PASSWORDENCRYPTIONKEY
+Secret=last_fm_api_key,type=env,target=ND_LASTFM_APIKEY
+Secret=last_fm_shared_secret,type=env,target=ND_LASTFM_SECRET
 
 [Service]
 Restart=always
