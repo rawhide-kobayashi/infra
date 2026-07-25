@@ -6,7 +6,7 @@ Documentation=https://neptunehub.github.io/AudioMuse-AI/
 ContainerName=audiomuse-redis
 Image=docker.io/redis:7-alpine
 Pod=audiomuse.pod
-Mount=type=bind,src=/var/lib/containers/storage/volumes/audiomuse/redis,dst=/data
+Mount=type=bind,src=/var/lib/containers/storage/volumes/audiomuse/redis,dst=/data,chown=true
 AutoUpdate=registry
 
 #Healthcheck
