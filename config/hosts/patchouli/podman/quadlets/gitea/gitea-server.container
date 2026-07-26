@@ -2,9 +2,10 @@
 Description=Gitea server container
 
 [Container]
-Image=docker.gitea.com/gitea:1.27.0
+Image=docker.gitea.com/gitea:1.27.0-rootless
 ContainerName=gitea-server
-Mount=type=bind,src=/var/lib/containers/storage/volumes/gitea,dst=/data,chown=true
+Mount=type=bind,src=/var/lib/containers/storage/volumes/gitea/data,dst=/var/lib/gitea,chown=true
+Mount=type=bind,src=/var/lib/containers/storage/volumes/gitea/config,dst=/etc/gitea,chown=true
 Mount=type=bind,src=/etc/localtime,dst=/etc/localtime,ro
 Pod=gitea.pod
 AddCapability=NET_BIND_SERVICE
