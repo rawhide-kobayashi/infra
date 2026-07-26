@@ -5,7 +5,6 @@ Description=Gitea server container
 Image=docker.gitea.com/gitea:1.27.0
 ContainerName=gitea-server
 Mount=type=bind,src=/var/lib/containers/storage/volumes/gitea,dst=/data,chown=true
-Mount=type=bind,src=/etc/timezone,dst=/etc/timezone,ro
 Mount=type=bind,src=/etc/localtime,dst=/etc/localtime,ro
 Pod=gitea.pod
 AddCapability=NET_BIND_SERVICE
