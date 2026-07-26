@@ -2,7 +2,7 @@
 Description=Kanidm server container
 
 [Container]
-Image=docker.io/kanidm/server:1.8.5
+Image=docker.io/kanidm/server:1.10.4
 ContainerName=kanidm-server
 Mount=type=bind,src=/var/lib/containers/storage/volumes/kanidm,dst=/data
 Pod=kanidm.pod
