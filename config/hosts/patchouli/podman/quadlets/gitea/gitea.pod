@@ -1,0 +1,8 @@
+[Pod]
+PodName=gitea
+ServiceName=gitea
+HostName=gitea
+Network=gitea-macvlan.network
+SubGIDMap=gitea
+SubUIDMap=gitea
+PodmanArgs=--mac-address 02:73:7e:10:f4:5a
